@@ -53,18 +53,19 @@ public class Pokemon extends Card {
     public boolean checkEnergy(ArrayList<Energy> requirements){
         ArrayList<Energy> currEnergy = new ArrayList<>(energy);
 
-        for (Energy e : requirements)
-            if (!e.getType().equals("Colorless"))
-                if (!currEnergy.remove(e))
-                    return false;
-        
-        int colorlessEnergy = 0;
+        //indexing of arraylists start from the top to avoid race condition as things are removed
+        for (int i = requirements.size() - 1; i >= 0; i--){
+            if (!requirements.get(i).getType().equals("Colorless")){
+                for (int j = currEnergy.size() - 1; j >= 0; j--){
+                    if (currEnergy.get(j).getType().equals(requirements.get(i).getType())) {
+                        currEnergy.remove(j);
+                        requirements.remove(i);
+                    }
+                }
+            }
+        }
 
-        for (Energy requirement : requirements)
-            if (requirement.getType().equals("Colorless"))
-                colorlessEnergy++;
-
-        return currEnergy.size() <= colorlessEnergy;
+        return currEnergy.size() >= requirements.size();
     }
 
     public boolean discardEnergy(String type) {
