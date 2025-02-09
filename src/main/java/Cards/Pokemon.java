@@ -1,4 +1,4 @@
-package PokemonTCG.Cards;
+package Cards;
 
 public class Pokemon extends Card {
 
