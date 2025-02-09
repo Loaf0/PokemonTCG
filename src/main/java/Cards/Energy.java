@@ -2,6 +2,8 @@ package Cards;
 
 public class Energy extends Card {
 
-    private int type;
+    public Energy(String type){
+        setType(type);
+    }
 
 }

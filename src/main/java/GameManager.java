@@ -12,7 +12,7 @@ public class GameManager {
     boolean player1bot = false;
     boolean player2bot = true;
 
-    public void runGame(){}
+    public void run(){}
 
     public void turn(){
         // draw and check if deck out
