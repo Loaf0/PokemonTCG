@@ -1,4 +1,6 @@
-import Cards.Card;
+package PokemonTCG;
+
+import PokemonTCG.Cards.Card;
 
 public class Field {
     Card[] field = new Card[6]; //Slot 0 is active pokemon 1-5 is bench

@@ -1,14 +1,14 @@
-package Cards.PokemonCards;
+package PokemonTCG.Cards.PokemonCards;
 
-import Cards.Energy;
-import Cards.Pokemon;
+import PokemonTCG.Cards.Energy;
+import PokemonTCG.Cards.Pokemon;
 
 import java.util.ArrayList;
 
 public class MrMime extends Pokemon {
 
     public MrMime() {
-        super(80, "None", "Psychic", 1, "Juggling", "");
+        super("Psychic", 80, "None", "Psychic", 1, "Juggling", "");
     }
 
     public void attack1(Pokemon target){

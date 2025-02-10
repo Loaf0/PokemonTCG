@@ -1,4 +1,4 @@
-package Cards;
+package PokemonTCG.Cards;
 
 public class Energy extends Card {
 

@@ -1,10 +1,15 @@
-package Cards;
+package PokemonTCG.Cards;
+
+import PokemonTCG.GameManager;
+import PokemonTCG.Player;
 
 public class Card {
 
     private String name;
-
     private String type;
+
+    public void playCard(Card c, GameManager gm, Player p) {
+    }
 
     public String getName() {
         return name;
@@ -17,4 +22,6 @@ public class Card {
     public String getType() {return type;}
 
     public void setType(String type) {this.type = type;}
+
+
 }

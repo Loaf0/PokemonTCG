@@ -1,4 +1,4 @@
-package Cards;
+package PokemonTCG.Cards;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,8 @@ public class Pokemon extends Card {
 
     private ArrayList<Energy> energy;
 
-    public Pokemon(int hp, String resistance, String weakness, int retreatCost, String attack1Name, String attack2Name) {
+    public Pokemon(String type, int hp, String resistance, String weakness, int retreatCost, String attack1Name, String attack2Name) {
+        setType(type);
         this.hp = hp;
         this.resistance = resistance;
         this.weakness = weakness;

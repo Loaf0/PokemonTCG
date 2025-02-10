@@ -1,4 +1,6 @@
-import Cards.Card;
+package PokemonTCG;
+
+import PokemonTCG.Cards.Card;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,10 @@ public class Deck {
         Card c = cards.getLast();
         cards.removeLast();
         return c;
+    }
+
+    public void add(Card c){
+        cards.add(c);
     }
 
     public Card reveal(){
