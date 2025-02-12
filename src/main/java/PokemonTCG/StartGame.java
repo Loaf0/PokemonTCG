@@ -1,11 +1,12 @@
 package PokemonTCG;
 
-import PokemonTCG.Cards.Energy;
-import PokemonTCG.Cards.Pokemon;
-import PokemonTCG.Cards.PokemonCards.MrMime;
+import java.io.IOException;
+
+import static PokemonTCG.GameManagerFactory.getGameManager;
 
 public class StartGame {
-    public static void main(String[] args){
-        new GameManager().run();
+    public static void main(String[] args) throws IOException {
+        new MonteCarlo().exportAllMulliganDataAsCSV(10000, "");
+        //getGameManager().run();
     }
 }

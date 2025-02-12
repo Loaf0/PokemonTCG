@@ -9,15 +9,16 @@ public class Voltorb extends Pokemon {
 
     public Voltorb() {
         super("Lightning", 90, "None", "Fighting", 1, "Sonic Boom", "Explosion");
+        setName("Voltorb");
     }
 
-    public void attack1(Pokemon target){
+    public void attack1(Pokemon target) {
         int attackDamage = 40;
 
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Energy("Colorless"));
 
-        if(!checkEnergy(requirements)){
+        if (!checkEnergy(requirements)) {
             return;
         }
 
@@ -26,13 +27,13 @@ public class Voltorb extends Pokemon {
         target.takeDamage(attackDamage);
     }
 
-    public void attack2(Pokemon target){
+    public void attack2(Pokemon target) {
         int attackDamage = 120;
 
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Energy("Colorless"));
 
-        if(!checkEnergy(requirements)){
+        if (!checkEnergy(requirements)) {
             return;
         }
 

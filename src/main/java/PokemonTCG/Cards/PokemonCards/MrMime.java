@@ -9,9 +9,10 @@ public class MrMime extends Pokemon {
 
     public MrMime() {
         super("Psychic", 80, "None", "Psychic", 1, "Juggling", "");
+        setName("Mr.Mime");
     }
 
-    public void attack1(Pokemon target){
+    public void attack1(Pokemon target) {
         int attackDamage = 20;
         int dmgMultiplier = 0;
 
@@ -25,7 +26,7 @@ public class MrMime extends Pokemon {
         requirements.add(new Energy("Psychic"));
         requirements.add(new Energy("Colorless"));
 
-        if(!checkEnergy(requirements)){
+        if (!checkEnergy(requirements)) {
             return;
         }
 

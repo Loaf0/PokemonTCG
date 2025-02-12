@@ -8,7 +8,8 @@ public class Card {
     private String name;
     private String type;
 
-    public void playCard(Card c, GameManager gm, Player p) {
+    public boolean playCard(Card c, Player p) {
+        return false;
     }
 
     public String getName() {
@@ -19,9 +20,13 @@ public class Card {
         this.name = name;
     }
 
-    public String getType() {return type;}
+    public String getType() {
+        return type;
+    }
 
-    public void setType(String type) {this.type = type;}
+    public void setType(String type) {
+        this.type = type;
+    }
 
 
 }

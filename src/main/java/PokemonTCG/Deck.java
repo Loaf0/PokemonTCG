@@ -6,29 +6,35 @@ import java.util.ArrayList;
 
 public class Deck {
 
-    private String deckName; //ex Deck Hand Prize Discard
     private ArrayList<Card> cards;
 
-    public Card draw(){
-        Card c = cards.getLast();
-        cards.removeLast();
-        return c;
+    public Deck() {
+        cards = new ArrayList<Card>();
     }
 
-    public void add(Card c){
+    public Card draw() {
+        if (!cards.isEmpty()) {
+            Card c = cards.get(cards.size() - 1);
+            cards.remove(cards.size() - 1);
+            return c;
+        }
+        return new Card();
+    }
+
+    public void add(Card c) {
         cards.add(c);
     }
 
-    public Card reveal(){
-        return cards.getLast();
+    public Card reveal() {
+        return cards.get(cards.size() - 1);
     }
 
-    public void multiShuffle(int iterations){
+    public void multiShuffle(int iterations) {
         for (int i = 0; i < iterations; i++)
             shuffle();
     }
 
-    public void shuffle(){
+    public void shuffle() {
         ArrayList<Card> split1 = new ArrayList<>();
         ArrayList<Card> split2 = new ArrayList<>();
 
@@ -39,18 +45,21 @@ public class Deck {
                 split1.add(card);
         }
 
-        if (Math.random() > .5){
+        if (Math.random() > .5) {
             split2.addAll(split1);
             cards = split2;
-        }
-        else {
+        } else {
             split1.addAll(split2);
             cards = split1;
         }
     }
 
-    public ArrayList<Card> getCards(){
+    public ArrayList<Card> getCards() {
         return cards;
+    }
+
+    public int size(){
+        return cards.size();
     }
 
 }
