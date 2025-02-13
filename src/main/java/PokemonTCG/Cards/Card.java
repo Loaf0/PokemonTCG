@@ -8,6 +8,10 @@ public class Card {
     private String name;
     private String type;
 
+    public Card(){
+
+    }
+
     public boolean playCard(Card c, Player p) {
         return false;
     }
