@@ -9,35 +9,82 @@ import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.PokemonCards.MrMime;
-import PokemonTCG.Cards.PokemonCards.Voltorb;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Cards.TrainerCards.Bill;
 
 public class GameManager {
 
-    int turnCount;
-    Player p1;
-    Player p2;
+    private boolean running;
+    private int turnCount;
+    private Player p1;
+    private Player p2;
 
     public void run() {
+        // check if user wants to run deck builder
         setupGame(true, true);
+        setUpTurnOrder();
+        startGameLoop();
 
-        p1.showHand();
-        p1.getDeck().add(new MrMime());
-        p1.getDeck().add(new Voltorb());
-
-        System.out.println(playCard(new Bill(), p1));
-
-        p1.showHand();
     }
 
     public void setupGame(boolean p1AI, boolean p2AI) {
-        p1 = new Player(p1AI);
-        p2 = new Player(p2AI);
         turnCount = 0;
+        running = true;
+
+        p1 = new Player(p1AI);
+        p1.setName("Player 1");
+        p2 = new Player(p2AI);
+        p2.setName("Player 2");
+
+        Deck testDeck = new Deck();
+
+        for (int i = 0; i < 20; i++) {
+            Card c = new MrMime();
+            testDeck.add(c);
+        }
+        for (int i = 0; i < 20; i++) {
+            Card c = new Bill();
+            testDeck.add(c);
+        }
+        for (int i = 0; i < 20; i++) {
+            Card c = new Energy("Psychic");
+            testDeck.add(c);
+        }
+        p1.setDeck(testDeck);
+        p2.setDeck(testDeck);
     }
 
-    public void turn() {
+
+    public void setUpTurnOrder(){
+        Log.message("Deciding what player goes first\n");
+        if (flipCoin()){
+            Player temp = p1;
+            p1 = p2;
+            p2 = temp;
+            Log.message("Player 2 Goes first!\n");
+        }
+        else
+            Log.message("Player 1 Goes first!\n");
+
+    }
+
+    public void startGameLoop(){
+        while(running){
+            turn(p1);
+            if (checkWinner())
+                break;
+            turn(p2);
+            if (checkWinner())
+                break;
+            turnCount++;
+        }
+    }
+
+    public void turn(Player p) {
+        if (p1.getPrize().getCards().isEmpty()){
+            p1.setLostFlag(true);
+            return;
+        }
         // draw and check if deck out
 
         // play 1 energy and any number of other cards if desired
@@ -45,10 +92,12 @@ public class GameManager {
         // if turn count 1 can not attack
     }
 
-    public void checkWinner() {
+    public boolean checkWinner() {
+        return !p1.getLostFlag() || !p2.getLostFlag();
     }
 
-    public void flipCoin() {
+    public boolean flipCoin() {
+        return Math.random() >= 0.5;
     }
 
     public boolean playCard(Card c, Player p) {

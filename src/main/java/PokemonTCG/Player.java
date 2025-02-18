@@ -4,12 +4,13 @@ import PokemonTCG.Cards.Card;
 
 public class Player {
 
-    String name;
-    Deck deck;
-    Deck discard;
-    Deck prize;
-    Hand hand;
-    boolean botFlag;
+    private String name;
+    private Deck deck;
+    private Deck discard;
+    private Deck prize;
+    private Hand hand;
+    private boolean botFlag;
+    private boolean lostFlag;
 
     public Player(boolean flag) {
         deck = new Deck();
@@ -17,10 +18,14 @@ public class Player {
         prize = new Deck();
         hand = new Hand();
         botFlag = flag;
+        lostFlag = false;
     }
 
     public void drawCard() {
-        hand.addCard(deck.draw());
+        if (!deck.getCards().isEmpty())
+            hand.addCard(deck.draw());
+        else
+            lostFlag = true;
     }
 
     public void drawCards(int x) {
@@ -87,6 +92,10 @@ public class Player {
         this.discard = discard;
     }
 
+    public Deck getPrize(){
+        return prize;
+    }
+
     public Deck getDeck() {
         return deck;
     }
@@ -102,6 +111,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean getLostFlag() {
+        return lostFlag;
+    }
+
+    public void setLostFlag(boolean lostFlag) {
+        this.lostFlag = lostFlag;
     }
 
 }
