@@ -18,7 +18,7 @@ public class Voltorb extends Pokemon {
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Energy("Colorless"));
 
-        if (!checkEnergy(requirements)) {
+        if (!checkEnergyRequirements(requirements)) {
             return;
         }
 
@@ -33,7 +33,7 @@ public class Voltorb extends Pokemon {
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Energy("Colorless"));
 
-        if (!checkEnergy(requirements)) {
+        if (!checkEnergyRequirements(requirements)) {
             return;
         }
 

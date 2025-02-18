@@ -2,6 +2,28 @@ package PokemonTCG.Cards;
 
 import java.util.ArrayList;
 
+/*
+Pokemon updates 2 and 3
+
+add evolutions
+tier 1 2 & 3 pokemon (unsure about 2)
+add rare candy
+
+find chances of rare candy falling into prize pile
+draw a hand and make sure you don't mulligan Then check find the probability of bricking from [1-4] rare candy
+
+third check up task
+1-4 different pokemon cards
+1-5 different trainer cards
+as much energy as you choose otherwise
+
+sample deck : 20 pokemon - 30 trainer - 10 energy
+
+make the game playable against yourself or an ai (not needed to think about outcomes, but uses all options)
+Document everything in comments / Java doc / Human instruction manual
++ List of all things that should be extra credit
+ */
+
 public class Pokemon extends Card {
 
     private int hp;
@@ -14,7 +36,7 @@ public class Pokemon extends Card {
     private ArrayList<Energy> energy;
 
     public Pokemon() {
-        energy = new ArrayList<Energy>();
+        energy = new ArrayList<>();
     }
 
     public Pokemon(String type, int hp, String resistance, String weakness, int retreatCost, String attack1Name, String attack2Name) {
@@ -25,7 +47,7 @@ public class Pokemon extends Card {
         this.retreatCost = retreatCost;
         this.attack1Name = attack1Name;
         this.attack2Name = attack2Name;
-        energy = new ArrayList<Energy>();
+        energy = new ArrayList<>();
     }
 
     // Example attack method
@@ -35,7 +57,7 @@ public class Pokemon extends Card {
 
         ArrayList<Energy> requirements = new ArrayList<>();
 
-        if (!checkEnergy(requirements)) {
+        if (!checkEnergyRequirements(requirements)) {
             return;
         }
 
@@ -49,13 +71,11 @@ public class Pokemon extends Card {
 
     // Template for attack2 only some pokemon have 1
     public void attack2(Pokemon target) {
-        if (attack2Name.isEmpty())
-            return;
-        else
+        if (!attack2Name.isEmpty())
             attack1(target); //attack 2 logic
     }
 
-    public boolean checkEnergy(ArrayList<Energy> requirements) {
+    public boolean checkEnergyRequirements(ArrayList<Energy> requirements) {
         ArrayList<Energy> currEnergy = new ArrayList<>(energy);
 
         //indexing of arraylists start from the top to avoid race condition as things are removed

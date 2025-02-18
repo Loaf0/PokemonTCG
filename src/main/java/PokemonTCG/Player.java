@@ -1,5 +1,7 @@
 package PokemonTCG;
 
+import PokemonTCG.Cards.Card;
+
 public class Player {
 
     String name;
@@ -36,9 +38,12 @@ public class Player {
 
     // only ran on turn one
     public void fillHand() {
+        drawCards(7);
     }
 
     public void fillPrize() {
+        prize.add(deck.draw());
+        prize.multiShuffle(5);
     }
 
     public void shuffle(){
@@ -55,6 +60,15 @@ public class Player {
 
     public void showHand() {
         hand.showHand();
+    }
+
+    public boolean deckHasCard(String cardName){
+        cardName = cardName.trim();
+        for (Card c : deck.getCards()) {
+            if (c.getName().trim().equalsIgnoreCase(cardName))
+                return true;
+        }
+        return false;
     }
 
     public Hand getHand() {

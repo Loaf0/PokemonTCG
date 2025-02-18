@@ -26,7 +26,7 @@ public class MrMime extends Pokemon {
         requirements.add(new Energy("Psychic"));
         requirements.add(new Energy("Colorless"));
 
-        if (!checkEnergy(requirements)) {
+        if (!checkEnergyRequirements(requirements)) {
             return;
         }
 

@@ -17,7 +17,7 @@ public class Card {
     }
 
     public String getName() {
-        return name;
+        return name == null ? "No Name" : name;
     }
 
     public void setName(String name) {
