@@ -57,7 +57,7 @@ public class Player {
         deck.multiShuffle(5);
     }
 
-    public boolean checkMulligan() {
+    public boolean passMulliganCheck() {
         return hand.checkMulligan();
     }
 

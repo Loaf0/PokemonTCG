@@ -32,7 +32,7 @@ public class MonteCarlo {
             p.shuffle();
             p.drawCards(7);
 
-            if (p.checkMulligan())
+            if (p.passMulliganCheck())
                 mulligans++;
         }
         double chance = (double) mulligans / iterations;
@@ -111,7 +111,7 @@ public class MonteCarlo {
             p.shuffle();
             p.drawCards(7);
 
-            if (p.checkMulligan() && p.deckHasCard("Rare Candy") )
+            if (p.passMulliganCheck() && p.deckHasCard("Rare Candy") )
                 brickedCount++;
         }
         double chance = (double) brickedCount / iterations;

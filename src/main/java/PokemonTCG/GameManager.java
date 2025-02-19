@@ -96,22 +96,32 @@ public class GameManager {
     }
 
     public void setupHands(){
-        int mulliganCounter = 0;
+        int p1MulliganCounter = 0;
+        int p2MulliganCounter = 0;
         Player[] players = {p1, p2};
 
-        for (Player p : players){
-            while (p.checkMulligan()){
-                p.drawCards(7 + mulliganCounter); // give the mulligan cards to the player
-                if (p.checkMulligan()){
-                    for (Card c : p.getHand().getCards()){
-                        p.getDeck().add(c);
+        for (int i = 0; i < players.length; i++){
+            while (players[i].passMulliganCheck()){
+                players[i].drawCards(7); // give the mulligan cards to the player
+                if (players[i].passMulliganCheck()){
+                    for (Card c : players[i].getHand().getCards()){
+                        players[i].getDeck().add(c);
                     }
-                    p.shuffle();
-                    p.setHand(new Hand()); // reset players hand after moving back to deck
+                    players[i].shuffle();
+                    players[i].setHand(new Hand()); // reset players hand after moving back to deck
                 }
+                else
+                    if(i == 0)
+                        p1MulliganCounter++;
+                    else
+                        p2MulliganCounter++;
             }
         }
 
+        if(p1MulliganCounter > p2MulliganCounter) // mulligans cancel out and are evaluated after hands are set up
+            p2.drawCards(p1MulliganCounter - p2MulliganCounter);
+        else if (p1MulliganCounter < p2MulliganCounter)
+            p1.drawCards(p2MulliganCounter - p1MulliganCounter);
     }
 
     public boolean checkWinner() {
