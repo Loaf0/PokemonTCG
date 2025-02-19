@@ -12,6 +12,8 @@ import PokemonTCG.Cards.PokemonCards.MrMime;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Cards.TrainerCards.Bill;
 
+import java.io.IOException;
+
 public class GameManager {
 
     private boolean running;
@@ -19,12 +21,14 @@ public class GameManager {
     private Player p1;
     private Player p2;
 
-    public void run() {
+    public void run() throws IOException {
         // check if user wants to run deck builder
         setupGame(true, true);
         setUpTurnOrder();
+        setupHands();
         startGameLoop();
 
+        Log.saveLog();
     }
 
     public void setupGame(boolean p1AI, boolean p2AI) {
@@ -56,26 +60,25 @@ public class GameManager {
 
 
     public void setUpTurnOrder(){
-        Log.message("Deciding what player goes first\n");
+        Log.message("Deciding what player goes first... \nHeads : " + p1.getName() + " - Tails : " + p2.getName() + "\n");
         if (flipCoin()){
             Player temp = p1;
             p1 = p2;
             p2 = temp;
-            Log.message("Player 2 Goes first!\n");
         }
-        else
-            Log.message("Player 1 Goes first!\n");
-
+        Log.message(p1.getName() + " goes first!\n");
     }
 
     public void startGameLoop(){
         while(running){
             turn(p1);
             if (checkWinner())
-                break;
+                return;
+
             turn(p2);
             if (checkWinner())
-                break;
+                return;
+
             turnCount++;
         }
     }
@@ -92,19 +95,43 @@ public class GameManager {
         // if turn count 1 can not attack
     }
 
+    public void setupHands(){
+        int mulliganCounter = 0;
+        Player[] players = {p1, p2};
+
+        for (Player p : players){
+            while (p.checkMulligan()){
+                p.drawCards(7 + mulliganCounter); // give the mulligan cards to the player
+                if (p.checkMulligan()){
+                    for (Card c : p.getHand().getCards()){
+                        p.getDeck().add(c);
+                    }
+                    p.shuffle();
+                    p.setHand(new Hand()); // reset players hand after moving back to deck
+                }
+            }
+        }
+
+    }
+
     public boolean checkWinner() {
         return !p1.getLostFlag() || !p2.getLostFlag();
     }
 
     public boolean flipCoin() {
-        return Math.random() >= 0.5;
+        boolean flip = Math.random() >= 0.5;
+        if (flip)
+            Log.message("Tails!\n");
+        else
+            Log.message("Heads!\n");
+        return flip;
     }
 
     public boolean playCard(Card c, Player p) {
         if (c instanceof Pokemon || c instanceof Energy || c instanceof Trainer) {
             return c.playCard(c, p);
         }
-        System.out.println(c.getName() + "ERROR : Object is not a card");
+        Log.message(c.getName() + "ERROR : Object is not a card");
         return false;
     }
 

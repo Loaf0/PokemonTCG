@@ -5,6 +5,7 @@ import PokemonTCG.Cards.Card;
 public class Player {
 
     private String name;
+    private Bench bench;
     private Deck deck;
     private Deck discard;
     private Deck prize;
@@ -13,6 +14,7 @@ public class Player {
     private boolean lostFlag;
 
     public Player(boolean flag) {
+        bench = new Bench();
         deck = new Deck();
         discard = new Deck();
         prize = new Deck();
@@ -121,4 +123,15 @@ public class Player {
         this.lostFlag = lostFlag;
     }
 
+    public Bench getBench() {
+        return bench;
+    }
+
+    public void setBench(Bench bench) {
+        this.bench = bench;
+    }
+
+    public void setPrize(Deck prize) {
+        this.prize = prize;
+    }
 }

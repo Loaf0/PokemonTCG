@@ -29,13 +29,17 @@ public class Hand {
     public boolean checkMulligan(){
         for(Card c : hand)
             if(c instanceof Pokemon)
-                return true;
-        return false;
+                return false;
+        return true;
     }
 
     public void showHand() {
         System.out.println("Hand :");
         for (Card c : hand)
             System.out.printf(" %s ", c.getName());
+    }
+
+    public ArrayList<Card> getCards(){
+        return hand;
     }
 }
