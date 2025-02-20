@@ -134,4 +134,10 @@ public class Player {
     public void setPrize(Deck prize) {
         this.prize = prize;
     }
+
+    public void showBench(){
+        String activePkm = bench.getActiveCard() == null ? "No Active Pokemon" : bench.getActiveCard().toString();
+        System.out.println("Active Pokemon : " + activePkm);
+        System.out.println("Bench : " + bench.getBench().toString());
+    }
 }

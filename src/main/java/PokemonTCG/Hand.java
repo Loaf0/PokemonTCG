@@ -37,6 +37,7 @@ public class Hand {
         System.out.println("Hand :");
         for (Card c : hand)
             System.out.printf(" %s ", c.getName());
+        System.out.println();
     }
 
     public ArrayList<Card> getCards(){

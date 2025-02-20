@@ -2,7 +2,6 @@ package PokemonTCG;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Log {
@@ -17,12 +16,12 @@ public class Log {
         log.append(message);
     }
 
-    public static void saveLog() throws IOException {
+    public static void saveLog() {
         if (log != null)
             exportBattleLog(log, "");
     }
 
-    public static void exportBattleLog(StringBuilder sb, String path) throws IOException {
+    public static void exportBattleLog(StringBuilder sb, String path) { // print sys time and append to path
         path = path.isEmpty() ? "../PokemonTCGExports/BattleLog.txt" : path;
         File f = new File(path);
 
