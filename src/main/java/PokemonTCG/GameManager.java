@@ -75,13 +75,12 @@ public class GameManager {
 
     public void startGameLoop(){
         while(running){
-            printPlayerState(p1);
-            printPlayerState(p2);
-
+            printGameState();
             turn(p1);
             if (checkWinner())
                 return;
 
+            printGameState();
             turn(p2);
             if (checkWinner())
                 return;
@@ -103,15 +102,14 @@ public class GameManager {
         p.drawCard();
 
         boolean playingTurn = true;
-        System.out.println("What will you do : \n  1. Play Card \n  2. Attack \n  3. Show Hand \n  4. End Turn");
+        printTurnMenu();
         while(playingTurn){
             int option = input.nextInt();
 
             switch(option){
                 case 1:
                     promptPlayCard(p);
-                    System.out.println("What will you do : \n  1. Play Card \n  2. Attack \n  3. Show Hand \n  4. End Turn");
-
+                    printTurnMenu();
                     break;
                 case 2:
                     if (turnCount == 0) {
@@ -119,17 +117,31 @@ public class GameManager {
                         break;
                     }
                     promptAttack(p);
-                    System.out.println("What will you do : \n  1. Play Card \n  2. Attack \n  3. Show Hand \n  4. End Turn");
+                    printTurnMenu();
                     break;
                 case 3:
                     p.showHand();
                     break;
                 case 4:
+                    promptRetreat(p);
+                    break;
+                case 5:
+                    promptInspect(p);
+                    break;
+                case 6:
+                    printGameState();
+                    break;
+                case 7:
+                    if(p.getBench().getActiveCard() == null){
+                        System.out.println("You must have an active pokemon before ending your turn!");
+                        break;
+                    }
+
                     Log.message("Ending Turn! \n\n");
                     playingTurn = false;
                     break;
                 default:
-                    System.out.println("The option that was selected is not available please Input [1, 2, 3, 4]");
+                    System.out.println("The option that was selected is not available please Input [1 - 6]");
                     break;
             }
         }
@@ -198,7 +210,7 @@ public class GameManager {
         System.out.println("Which card will you play?");
 
         for (int i = 0; i < size; i++) {
-            System.out.println((i + 1) + ". " + p.getHand().getCards().get(i).getName());
+            System.out.println("  " + (i + 1) + ". " + p.getHand().getCards().get(i).getName());
         }
 
         boolean looping = true;
@@ -213,7 +225,29 @@ public class GameManager {
     }
 
     public void promptAttack(Player p){
+        if(p.getBench().getActiveCard() == null){
+            System.out.println(p.getName() + " doesn't have an active Pokemon");
+            return;
+        }
+        System.out.println("Choose Attack :");
 
+
+    }
+
+    public void promptRetreat(Player p){
+        if(p.getBench().getActiveCard() == null){
+            System.out.println(p.getName() + " doesn't have an active Pokemon");
+            return;
+        }
+        System.out.println("Choose Attack :");
+    }
+
+    public void promptInspect(Player p){
+        if(p.getBench().getActiveCard() == null){
+            System.out.println(p.getName() + " doesn't have an active Pokemon");
+            return;
+        }
+        System.out.println("Choose Attack :");
     }
 
     public void printPlayerState(Player p){
@@ -222,6 +256,21 @@ public class GameManager {
         p.showBench();
         System.out.println("Hand Size : " + p.getHand().getCards().size());
         System.out.println("Prize Cards : " + p.getPrize().getCards().size());
+    }
+
+    public void printGameState(){
+        System.out.printf("\n%-50s | %-50s", p1.getName() + "'s Game State", p2.getName() + "'s Game State");
+        System.out.printf("\n%-50s | %-50s", p1.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p1.getBench().getActiveCard(), p2.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p2.getBench().getActiveCard());
+        System.out.printf("\n%-50s | %-50s", "Bench : " + p1.getBench().getCards().toString(), "Bench : " + p2.getBench().getCards().toString());
+        System.out.printf("\n%-50s | %-50s", "Hand Size : " + p1.getHand().getCards().size() + "  - Cards Left : " + p1.getDeck().getCards().size(), "Hand Size : " + p2.getHand().getCards().size() + "  - Cards Left : " + p2.getDeck().getCards().size());
+        System.out.printf("\n%-50s | %-50s \n", "Prize Cards : " + p1.getPrize().getCards().size(), "Prize Cards : " + p2.getPrize().getCards().size());
+    }
+
+    public void printTurnMenu(){
+        System.out.println("What will you do : " +
+                "\n  1. Play Card    4. Retreat           7. End turn " +
+                "\n  2. Attack       5. Inspect Card" +
+                "\n  3. Show Hand    6. Show Game State");
     }
 
 }

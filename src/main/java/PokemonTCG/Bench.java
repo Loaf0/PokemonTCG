@@ -21,7 +21,7 @@ public class Bench {
         return true;
     }
 
-    public ArrayList<Pokemon> getBench() {
+    public ArrayList<Pokemon> getCards() {
         return bench;
     }
 

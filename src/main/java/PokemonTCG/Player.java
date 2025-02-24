@@ -49,7 +49,9 @@ public class Player {
     }
 
     public void fillPrize() {
-        prize.add(deck.draw());
+        for (int i = 0; i < 6; i++) {
+            prize.add(deck.draw());
+        }
         prize.multiShuffle(5);
     }
 
@@ -138,6 +140,6 @@ public class Player {
     public void showBench(){
         String activePkm = bench.getActiveCard() == null ? "No Active Pokemon" : bench.getActiveCard().toString();
         System.out.println("Active Pokemon : " + activePkm);
-        System.out.println("Bench : " + bench.getBench().toString());
+        System.out.println("Bench : " + bench.getCards().toString());
     }
 }
