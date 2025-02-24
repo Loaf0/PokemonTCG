@@ -14,6 +14,18 @@ public class Bench {
         bench = new ArrayList<>();
     }
 
+    public void addToBench(Pokemon p){
+        if (activeCard == null)
+            activeCard = p;
+        else
+            bench.add(p);
+
+    }
+
+    public boolean hasOpenSlots(){
+        return bench.size() <= 5;
+    }
+
     public boolean setActiveCard(int input){
         if(0 <= input && input < bench.size() && activeCard == null)
             return false;

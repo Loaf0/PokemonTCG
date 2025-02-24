@@ -7,12 +7,15 @@ package PokemonTCG;
 
 import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Energy;
+import PokemonTCG.Cards.EnergyCards.Colorless;
+import PokemonTCG.Cards.EnergyCards.Psychic;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.PokemonCards.MrMime;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Cards.TrainerCards.Bill;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameManager {
@@ -54,9 +57,11 @@ public class GameManager {
             Card c = new Bill();
             testDeck.add(c);
         }
-        for (int i = 0; i < 20; i++) {
-            Card c = new Energy("Psychic");
+        for (int i = 0; i < 10; i++) {
+            Card c = new Psychic();
+            Card d = new Colorless();
             testDeck.add(c);
+            testDeck.add(d);
         }
         p1.setDeck(testDeck);
         p2.setDeck(testDeck);
@@ -214,14 +219,17 @@ public class GameManager {
         }
 
         boolean looping = true;
+        int userInput = 0;
         while(looping){
-            int userInput = input.nextInt() - 1;
+            userInput = input.nextInt() - 1;
             if (userInput >= 0 && userInput < size)
                 looping = false;
             else
                 System.out.println("Please enter a valid option");
         }
-
+        if(playCard(p.getHand().getCards().get(userInput), p)){
+            p.getHand().getCards().remove(userInput);
+        }
     }
 
     public void promptAttack(Player p){
@@ -260,10 +268,32 @@ public class GameManager {
 
     public void printGameState(){
         System.out.printf("\n%-50s | %-50s", p1.getName() + "'s Game State", p2.getName() + "'s Game State");
-        System.out.printf("\n%-50s | %-50s", p1.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p1.getBench().getActiveCard(), p2.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p2.getBench().getActiveCard());
-        System.out.printf("\n%-50s | %-50s", "Bench : " + p1.getBench().getCards().toString(), "Bench : " + p2.getBench().getCards().toString());
+        System.out.printf("\n%-50s | %-50s", p1.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p1.getBench().getActiveCard().getName(), p2.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p2.getBench().getActiveCard().getName());
+
+        System.out.printf("\n%-50s | %-50s", getBenchRows(0, 3, p1), "Bench : " + getBenchRows(0, 3, p2));
+        if(p1.getBench().getCards().size() > 3 || p2.getBench().getCards().size() > 3 )
+            System.out.printf("\n%-50s | %-50s", getBenchRows(1, 3, p1), "Bench : " + getBenchRows(1, 3, p2));
+
         System.out.printf("\n%-50s | %-50s", "Hand Size : " + p1.getHand().getCards().size() + "  - Cards Left : " + p1.getDeck().getCards().size(), "Hand Size : " + p2.getHand().getCards().size() + "  - Cards Left : " + p2.getDeck().getCards().size());
         System.out.printf("\n%-50s | %-50s \n", "Prize Cards : " + p1.getPrize().getCards().size(), "Prize Cards : " + p2.getPrize().getCards().size());
+    }
+
+    private String getBenchRows(int rowNumber, int valuesPerRow, Player p) {
+        ArrayList<Pokemon> benchCards = p.getBench().getCards();
+        int startIndex = rowNumber * valuesPerRow;
+
+        StringBuilder row = new StringBuilder();
+
+        for (int i = startIndex; i < startIndex + valuesPerRow && i < benchCards.size(); i++) {
+            if (i > startIndex) row.append(", ");
+            row.append(benchCards.get(i).getName());
+        }
+
+        if (row.isEmpty()) {
+            return "Bench: None";
+        } else {
+            return "Bench: " + row.toString();
+        }
     }
 
     public void printTurnMenu(){

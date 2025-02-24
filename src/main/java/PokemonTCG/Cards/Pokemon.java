@@ -1,5 +1,7 @@
 package PokemonTCG.Cards;
 
+import PokemonTCG.Player;
+
 import java.util.ArrayList;
 
 /*
@@ -48,6 +50,14 @@ public class Pokemon extends Card {
         this.attack1Name = attack1Name;
         this.attack2Name = attack2Name;
         energy = new ArrayList<>();
+    }
+
+    public boolean playCard(Card c, Player p) {
+        if (c instanceof Pokemon && p.getBench().hasOpenSlots()){
+            p.getBench().addToBench((Pokemon) c);
+            return true;
+        }
+        return false;
     }
 
     // Example attack method
