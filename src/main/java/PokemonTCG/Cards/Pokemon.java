@@ -66,7 +66,11 @@ public class Pokemon extends Card {
         return false;
     }
 
-    // Example attack method
+    /**
+     * temporary method used to create attack methods based on
+     *
+     * @param target pokemon who is target of attack
+     */
     public void attack1(Pokemon target) {
         //weakness * 2 resist - 20 flat
         int attackDamage = 10;
@@ -85,10 +89,9 @@ public class Pokemon extends Card {
         target.takeDamage(attackDamage);
     }
 
-    // Template for attack2 only some pokemon have 1
     public void attack2(Pokemon target) {
         if (!attack2Name.isEmpty())
-            attack1(target); //attack 2 logic
+            attack1(target);
     }
 
     public boolean checkEnergyRequirements(ArrayList<Energy> requirements) {

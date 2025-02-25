@@ -19,7 +19,6 @@ public class Bench {
             activeCard = p;
         else
             bench.add(p);
-
     }
 
     public boolean hasOpenSlots(){

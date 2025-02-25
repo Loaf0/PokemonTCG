@@ -11,7 +11,7 @@ public class MrMime extends Pokemon {
     public MrMime() {
         super("Psychic", 80, "None", "Psychic", 1, "Juggling", "");
         setName("Mr.Mime");
-        setAttack1Desc("Flip 4 coins. This card does 10 damage times the number of heads. Req [PSYC, ]");
+        setAttack1Desc("Flip 4 coins. This card does 10 damage times the number of heads. Req [PSYC, COLR]");
     }
 
     public void attack1(Pokemon target) {
@@ -38,7 +38,7 @@ public class MrMime extends Pokemon {
         else if (getType().equals(target.getResistance()))
             attackDamage -= 20;
 
-        Log.message(getName() + " used " + target.getName() + " dealing " + attackDamage + " damage!");
+        Log.message(getName() + " used " + getAttack1Name() + " on " + target.getName() + " dealing " + attackDamage + " damage! \n");
         target.takeDamage(attackDamage);
     }
 }

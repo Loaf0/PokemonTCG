@@ -8,6 +8,11 @@ public class Log {
 
     private static StringBuilder log;
 
+    /**
+     * prints and appends messages to be outputted to a battle log text file
+     *
+     * @param message will print and save the message.
+     */
     public static void message(String message){
         if (log == null)
             log = new StringBuilder();

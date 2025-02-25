@@ -43,7 +43,11 @@ public class Player {
         return x <= deck.size();
     }
 
-    // only ran on turn one
+    public void collectPrize(){
+        if (!deck.getCards().isEmpty())
+            hand.addCard(prize.draw());
+    }
+
     public void fillHand() {
         drawCards(7);
     }

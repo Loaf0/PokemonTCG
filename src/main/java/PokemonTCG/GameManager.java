@@ -11,6 +11,7 @@ import PokemonTCG.Cards.EnergyCards.Colorless;
 import PokemonTCG.Cards.EnergyCards.Psychic;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.PokemonCards.MrMime;
+import PokemonTCG.Cards.PokemonCards.Voltorb;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Cards.TrainerCards.Bill;
 
@@ -47,9 +48,11 @@ public class GameManager {
 
         Deck testDeck = new Deck();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             Card c = new MrMime();
+            Card d = new Voltorb();
             testDeck.add(c);
+            testDeck.add(d);
         }
         for (int i = 0; i < 20; i++) {
             Card c = new Bill();
@@ -80,7 +83,6 @@ public class GameManager {
         while(running){
             printGameState();
             turn(p1);
-            System.out.println("Check winner " + checkWinner());
             if (checkWinner())
                 return;
 
@@ -98,8 +100,34 @@ public class GameManager {
         // on quit scan.close(); and end
     }
 
+    /**
+     * will execute all the per turn logic and choices made by the player
+     *
+     * @param p the player taking the turn.
+     */
     public void turn(Player p) {
-        // make pokemon faint if dead
+        // check if active pokemon is alive
+        if (p.getBench().getActiveCard() != null && p.getBench().getActiveCard().getHp() == 0){
+            Log.message(p.getBench().getActiveCard().getName() + " has fainted! \n");
+
+            Player opponent = p == p1 ? p2 : p1;
+            opponent.collectPrize();
+
+            if(opponent.getPrize().getCards().isEmpty()){
+                Log.message(opponent.getName() + " has beaten all of " + p.getName() + "'s Pokemon and won! \n");
+                p.setLostFlag(true);
+                return;
+            }
+
+            if(p.getBench().getCards().isEmpty()){
+                Log.message(p.getName() + " has no active pokemon and loses the battle! \n");
+                p.setLostFlag(true);
+                return;
+            }
+            else {
+                promptNewActive(p);
+            }
+        }
 
         if (p.getPrize().getCards().isEmpty()){
             p.setLostFlag(true);
@@ -147,8 +175,6 @@ public class GameManager {
                         System.out.println("You must have an active pokemon before ending your turn!");
                         break;
                     }
-
-                    Log.message("Ending Turn! \n\n");
                     playingTurn = false;
                     break;
                 default:
@@ -157,6 +183,7 @@ public class GameManager {
             }
         }
 
+        Log.message("Ending Turn! \n\n");
         // play 1 energy and any number of other cards if desired
 
         turnCount++;
@@ -223,6 +250,12 @@ public class GameManager {
         return false;
     }
 
+    /**
+     * allows choice of attaching energy cards to pokemon
+     *
+     * @param e the energy card to be attached.
+     * @param p the player taking the turn.
+     */
     private boolean attachEnergy(Energy e, Player p) {
         if (p.getBench().getActiveCard() == null)
             return false;
@@ -255,6 +288,11 @@ public class GameManager {
         return true;
     }
 
+    /**
+     * handles the choosing and playing of cards
+     *
+     * @param p the player taking the turn.
+     */
     public void promptPlayCard(Player p){
         int size = p.getHand().getCards().size();
 
@@ -284,6 +322,11 @@ public class GameManager {
             p.getHand().getCards().remove(userInput);
     }
 
+    /**
+     * the attacking logic and player choice of move
+     *
+     * @param p the player taking the turn.
+     */
     public void promptAttack(Player p){
         if(p.getBench().getActiveCard() == null){
             System.out.println(p.getName() + " doesn't have an active Pokemon");
@@ -316,7 +359,30 @@ public class GameManager {
             else
                 System.out.println("Please enter a valid option");
         }
+
+        // check if pokemon was killed during own attack ex. self dmg voltorb dies first
+        if (p.getBench().getActiveCard() != null && p.getBench().getActiveCard().getHp() == 0){
+            Log.message(p.getBench().getActiveCard().getName() + " has fainted! \n");
+
+            opponent.collectPrize();
+
+            if(opponent.getPrize().getCards().isEmpty()){
+                Log.message(opponent.getName() + " has beaten all of " + p.getName() + "'s Pokemon and won! \n");
+                p.setLostFlag(true);
+                return;
+            }
+
+            if(p.getBench().getCards().isEmpty()){
+                Log.message(p.getName() + " has no active pokemon and loses the battle! \n");
+                p.setLostFlag(true);
+                return;
+            }
+            else {
+                promptNewActive(p);
+            }
+        }
     }
+
 
     public void promptRetreat(Player p){
         if(p.getBench().getActiveCard() == null){
@@ -332,14 +398,36 @@ public class GameManager {
         // stats would be
     }
 
-    public void printPlayerState(Player p){
-        System.out.println();
-        System.out.println(p.getName() + "'s gameState");
-        p.showBench();
-        System.out.println("Hand Size : " + p.getHand().getCards().size());
-        System.out.println("Prize Cards : " + p.getPrize().getCards().size());
+    /**
+     * change active pokemon after retreat or faint
+     *
+     * @param p the player taking the turn.
+     */
+    public void promptNewActive(Player p){
+        int size = p.getBench().getCards().size();
+
+        System.out.println("Which pokemon will be your new active pokemon?");
+
+        for (int i = 0; i < size; i++) {
+            System.out.println("  " + (i + 1) + ". " + p.getBench().getCards().get(i).getName());
+        }
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            userInput = input.nextInt() - 1;
+            if (userInput >= 0 && userInput < size)
+                looping = false;
+            else
+                System.out.println("Please enter a valid option");
+        }
+
+        p.getBench().setActiveCard(userInput);
     }
 
+    /**
+     * displays all relevant player information between turns
+     */
     public void printGameState(){
         System.out.printf("\n%-50s | %-50s", p1.getName() + "'s Game State", p2.getName() + "'s Game State");
 
@@ -356,6 +444,13 @@ public class GameManager {
         System.out.printf("\n%-50s | %-50s \n", "Prize Cards : " + p1.getPrize().getCards().size(), "Prize Cards : " + p2.getPrize().getCards().size());
     }
 
+    /**
+     * retrieve string of items from a players bench
+     *
+     * @param rowNumber the row number
+     * @param valuesPerRow amount of items per row
+     * @param p player whos bench is being retrieved
+     */
     private String getBenchRows(int rowNumber, int valuesPerRow, Player p) {
         ArrayList<Pokemon> benchCards = p.getBench().getCards();
         int startIndex = rowNumber * valuesPerRow;
@@ -380,5 +475,4 @@ public class GameManager {
                 "\n  2. Attack       5. Inspect Card" +
                 "\n  3. Show Hand    6. Show Game State");
     }
-
 }
