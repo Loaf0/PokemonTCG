@@ -2,6 +2,7 @@ package PokemonTCG;
 
 import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Energy;
+import PokemonTCG.Cards.EnergyCards.Colorless;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.TrainerCards.RareCandy;
 
@@ -17,21 +18,7 @@ public class MonteCarlo {
         int mulligans = 0;
 
         for (int i = 0; i < iterations; i++) {
-            Player p = new Player(false);
-            Deck d = new Deck();
-            for (int j = 0; j < numOfPokemon; j++) {
-                Card c = new Pokemon();
-                d.add(c);
-            }
-            while (d.size() < 60) {
-                Card c = new Energy();
-                d.add(c);
-            }
-
-            p.setDeck(d);
-            p.shuffle();
-            p.drawCards(7);
-
+            Player p = getPlayer(i, 0);
             if (p.passMulliganCheck())
                 mulligans++;
         }
@@ -92,24 +79,7 @@ public class MonteCarlo {
         int brickedCount = 0;
 
         for (int i = 0; i < iterations; i++) {
-            Player p = new Player(false);
-            Deck d = new Deck();
-            for (int r = 0; r < numOfRareCandy; r++){
-                Card c = new RareCandy();
-                d.add(c);
-            }
-            for (int j = 0; j < numOfPokemon; j++) {
-                Card c = new Pokemon();
-                d.add(c);
-            }
-            while (d.size() < 60) {
-                Card c = new Energy();
-                d.add(c);
-            }
-
-            p.setDeck(d);
-            p.shuffle();
-            p.drawCards(7);
+            Player p = getPlayer(numOfPokemon, numOfRareCandy);
 
             if (p.passMulliganCheck() && p.deckHasCard("Rare Candy") )
                 brickedCount++;
@@ -117,6 +87,28 @@ public class MonteCarlo {
         double chance = (double) brickedCount / iterations;
         System.out.printf("Pokemon in Deck : %2d, Iterations : %10d, Mulligans Or Bricked : %10d, Chance Of Occurrence : %.3f%% \n" , numOfPokemon, iterations, brickedCount, chance * 100);
         return chance;
+    }
+
+    private static Player getPlayer(int numOfPokemon, int numOfRareCandy) {
+        Player p = new Player(false);
+        Deck d = new Deck();
+        for (int r = 0; r < numOfRareCandy; r++){
+            Card c = new RareCandy();
+            d.add(c);
+        }
+        for (int j = 0; j < numOfPokemon; j++) {
+            Card c = new Pokemon();
+            d.add(c);
+        }
+        while (d.size() < 60) {
+            Card c = new Colorless();
+            d.add(c);
+        }
+
+        p.setDeck(d);
+        p.shuffle();
+        p.drawCards(7);
+        return p;
     }
 
 }

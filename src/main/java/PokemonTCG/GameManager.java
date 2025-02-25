@@ -14,7 +14,6 @@ import PokemonTCG.Cards.PokemonCards.MrMime;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Cards.TrainerCards.Bill;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +26,7 @@ public class GameManager {
     private Player p2;
     private Scanner input;
 
-    public void run() throws IOException {
+    public void run(){
         // check if user wants to run deck builder
         setupGame(true, true);
         setUpTurnOrder();
@@ -95,7 +94,7 @@ public class GameManager {
     public void endingGame(){
         Log.saveLog();
         System.out.println("Someone wins return to menu or quit game?");
-        // on return to menu restart gamemanager
+        // on return to menu restart gameManager
         // on quit scan.close(); and end
     }
 
@@ -209,11 +208,51 @@ public class GameManager {
     }
 
     public boolean playCard(Card c, Player p) {
-        if (c instanceof Pokemon || c instanceof Energy || c instanceof Trainer) {
+        if (c instanceof Pokemon || c instanceof Trainer) {
             return c.playCard(c, p);
         }
-        Log.message(c.getName() + "ERROR : Object is not a card");
+        if (c instanceof Energy){
+            if(!canPlayEnergy) {
+                System.out.println("You can only play energy ONCE per turn!");
+                return false;
+            }
+            return attachEnergy((Energy) c, p);
+        }
+
+                Log.message(c.getName() + "ERROR : Object is not a card");
         return false;
+    }
+
+    private boolean attachEnergy(Energy e, Player p) {
+        if (p.getBench().getActiveCard() == null)
+            return false;
+
+        int size = p.getBench().getCards().size();
+
+        System.out.println("Which pokemon do you want to attach " + e.getName() + " to?");
+        System.out.println("  0. " + p.getBench().getActiveCard().getName() + " (Active Pokemon)");
+        for (int i = 0; i < size; i++) {
+            System.out.println("  " + (i + 1) + ". " + p.getHand().getCards().get(i).getName());
+        }
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            userInput = input.nextInt() - 1;
+            if (userInput >= -1 && userInput < size)
+                looping = false;
+            else
+                System.out.println("Please enter a valid option");
+        }
+
+        if(userInput == -1){
+            p.getBench().getActiveCard().attachEnergy(e);
+        }
+        else {
+            p.getBench().getCards().get(userInput).attachEnergy(e);
+        }
+
+        return true;
     }
 
     public void promptPlayCard(Player p){
@@ -239,9 +278,10 @@ public class GameManager {
             return;
         }
 
-        if(playCard(p.getHand().getCards().get(userInput), p)){
+        Card c = p.getHand().getCards().get(userInput);
+
+        if(playCard(c, p))
             p.getHand().getCards().remove(userInput);
-        }
     }
 
     public void promptAttack(Player p){
@@ -252,7 +292,7 @@ public class GameManager {
         System.out.println("Choose Attack :");
 
         Pokemon c = p.getBench().getActiveCard();
-        Player opponent = p == p1 ? p2 : p1;;
+        Player opponent = p == p1 ? p2 : p1;
 
         if(!c.getAttack1Name().isEmpty()){
             System.out.println("  1. " + c.getAttack1Name() + " - " + c.getAttack1Desc());
@@ -262,7 +302,7 @@ public class GameManager {
         }
 
         boolean looping = true;
-        int userInput = 0;
+        int userInput;
         while(looping){
             userInput = input.nextInt();
             if (userInput == 1 && !c.getAttack1Name().isEmpty()){
@@ -287,11 +327,9 @@ public class GameManager {
     }
 
     public void promptInspect(Player p){
-        if(p.getBench().getActiveCard() == null){
-            System.out.println(p.getName() + " doesn't have an active Pokemon");
-            return;
-        }
-        System.out.println("Choose Attack :");
+        // ask user where the card you want to inspect is
+        // options bench hand active card
+        // stats would be
     }
 
     public void printPlayerState(Player p){
@@ -332,7 +370,7 @@ public class GameManager {
         if (row.isEmpty()) {
             return "Bench: None";
         } else {
-            return "Bench: " + row.toString();
+            return "Bench: " + row;
         }
     }
 
