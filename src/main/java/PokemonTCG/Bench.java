@@ -41,7 +41,7 @@ public class Bench {
         this.bench = bench;
     }
 
-    public Card getActiveCard() {
+    public Pokemon getActiveCard() {
         return activeCard;
     }
 }

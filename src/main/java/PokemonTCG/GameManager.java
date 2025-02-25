@@ -33,8 +33,7 @@ public class GameManager {
         setUpTurnOrder();
         setupHands();
         startGameLoop();
-
-        Log.saveLog();
+        endingGame();
     }
 
     public void setupGame(boolean p1AI, boolean p2AI) {
@@ -82,6 +81,7 @@ public class GameManager {
         while(running){
             printGameState();
             turn(p1);
+            System.out.println("Check winner " + checkWinner());
             if (checkWinner())
                 return;
 
@@ -89,12 +89,19 @@ public class GameManager {
             turn(p2);
             if (checkWinner())
                 return;
-
-            turnCount++;
         }
     }
 
+    public void endingGame(){
+        Log.saveLog();
+        System.out.println("Someone wins return to menu or quit game?");
+        // on return to menu restart gamemanager
+        // on quit scan.close(); and end
+    }
+
     public void turn(Player p) {
+        // make pokemon faint if dead
+
         if (p.getPrize().getCards().isEmpty()){
             p.setLostFlag(true);
             return;
@@ -122,7 +129,7 @@ public class GameManager {
                         break;
                     }
                     promptAttack(p);
-                    printTurnMenu();
+                    playingTurn = false;
                     break;
                 case 3:
                     p.showHand();
@@ -153,7 +160,7 @@ public class GameManager {
 
         // play 1 energy and any number of other cards if desired
 
-        // if turn count 1 can not attack
+        turnCount++;
     }
 
     public void setupHands(){
@@ -189,7 +196,7 @@ public class GameManager {
     }
 
     public boolean checkWinner() {
-        return !p1.getLostFlag() && !p2.getLostFlag();
+        return p1.getLostFlag() || p2.getLostFlag();
     }
 
     public boolean flipCoin() {
@@ -213,7 +220,7 @@ public class GameManager {
         int size = p.getHand().getCards().size();
 
         System.out.println("Which card will you play?");
-
+        System.out.println("  0. Return to menu");
         for (int i = 0; i < size; i++) {
             System.out.println("  " + (i + 1) + ". " + p.getHand().getCards().get(i).getName());
         }
@@ -222,11 +229,16 @@ public class GameManager {
         int userInput = 0;
         while(looping){
             userInput = input.nextInt() - 1;
-            if (userInput >= 0 && userInput < size)
+            if (userInput >= -1 && userInput < size)
                 looping = false;
             else
                 System.out.println("Please enter a valid option");
         }
+
+        if (userInput == -1){
+            return;
+        }
+
         if(playCard(p.getHand().getCards().get(userInput), p)){
             p.getHand().getCards().remove(userInput);
         }
@@ -239,7 +251,31 @@ public class GameManager {
         }
         System.out.println("Choose Attack :");
 
+        Pokemon c = p.getBench().getActiveCard();
+        Player opponent = p == p1 ? p2 : p1;;
 
+        if(!c.getAttack1Name().isEmpty()){
+            System.out.println("  1. " + c.getAttack1Name() + " - " + c.getAttack1Desc());
+        }
+        if(!c.getAttack2Name().isEmpty()){
+            System.out.println("  2. " + c.getAttack2Name() + " - " + c.getAttack2Desc());
+        }
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            userInput = input.nextInt();
+            if (userInput == 1 && !c.getAttack1Name().isEmpty()){
+                c.attack1(opponent.getBench().getActiveCard());
+                looping = false;
+            }
+            else if (userInput == 2 && !c.getAttack2Name().isEmpty()) {
+                c.attack2(opponent.getBench().getActiveCard());
+                looping = false;
+            }
+            else
+                System.out.println("Please enter a valid option");
+        }
     }
 
     public void promptRetreat(Player p){
@@ -268,7 +304,11 @@ public class GameManager {
 
     public void printGameState(){
         System.out.printf("\n%-50s | %-50s", p1.getName() + "'s Game State", p2.getName() + "'s Game State");
-        System.out.printf("\n%-50s | %-50s", p1.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p1.getBench().getActiveCard().getName(), p2.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p2.getBench().getActiveCard().getName());
+
+        String p1ActivePkm = p1.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p1.getBench().getActiveCard().getName() + " - " + p1.getBench().getActiveCard().getHp() + "/" + p1.getBench().getActiveCard().getMaxHp() + " HP ";
+        String p2ActivePkm = p2.getBench().getActiveCard() == null ? "Active Pokemon : None" : "Active Pokemon : " + p2.getBench().getActiveCard().getName() + " - " + p2.getBench().getActiveCard().getHp() + "/" + p2.getBench().getActiveCard().getMaxHp() + " HP ";
+
+        System.out.printf("\n%-50s | %-50s", p1ActivePkm, p2ActivePkm);
 
         System.out.printf("\n%-50s | %-50s", getBenchRows(0, 3, p1), "Bench : " + getBenchRows(0, 3, p2));
         if(p1.getBench().getCards().size() > 3 || p2.getBench().getCards().size() > 3 )

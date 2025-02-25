@@ -1,5 +1,6 @@
 package PokemonTCG.Cards;
 
+import PokemonTCG.Log;
 import PokemonTCG.Player;
 
 import java.util.ArrayList;
@@ -29,10 +30,13 @@ Document everything in comments / Java doc / Human instruction manual
 public class Pokemon extends Card {
 
     private int hp;
+    private int maxHp;
     private String resistance;
     private String weakness;
     private String attack1Name;
     private String attack2Name;
+    private String attack1Desc;
+    private String attack2Desc;
     private int retreatCost;
 
     private ArrayList<Energy> energy;
@@ -44,6 +48,7 @@ public class Pokemon extends Card {
     public Pokemon(String type, int hp, String resistance, String weakness, int retreatCost, String attack1Name, String attack2Name) {
         setType(type);
         this.hp = hp;
+        maxHp = hp;
         this.resistance = resistance;
         this.weakness = weakness;
         this.retreatCost = retreatCost;
@@ -55,6 +60,7 @@ public class Pokemon extends Card {
     public boolean playCard(Card c, Player p) {
         if (c instanceof Pokemon && p.getBench().hasOpenSlots()){
             p.getBench().addToBench((Pokemon) c);
+            Log.message(p.getName() + " Played " + c.getName() + "\n");
             return true;
         }
         return false;
@@ -119,6 +125,9 @@ public class Pokemon extends Card {
 
     public void takeDamage(int dmg) {
         hp -= dmg;
+        if (hp < 0){
+            hp = 0;
+        }
     }
 
     public void attachEnergy(Energy e) {
@@ -179,5 +188,29 @@ public class Pokemon extends Card {
 
     public void setRetreatCost(int retreatCost) {
         this.retreatCost = retreatCost;
+    }
+
+    public String getAttack1Desc() {
+        return attack1Desc;
+    }
+
+    public void setAttack1Desc(String attack1Desc) {
+        this.attack1Desc = attack1Desc;
+    }
+
+    public String getAttack2Desc() {
+        return attack2Desc;
+    }
+
+    public void setAttack2Desc(String attack2Desc) {
+        this.attack2Desc = attack2Desc;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
     }
 }
