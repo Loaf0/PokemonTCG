@@ -15,27 +15,28 @@ public class Voltorb extends Pokemon {
         setAttack2Desc("Deal 120 Damage. This attack deals 90 damage to itself. Req [COLR]");
     }
 
-    public void attack1(Pokemon target) {
+    public boolean attack1(Pokemon target) {
         int attackDamage = 40;
 
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Energy("Colorless"));
 
         if (!checkEnergyRequirements(requirements)) {
-            return;
+            return false;
         }
 
         target.takeDamage(attackDamage);
+        return true;
     }
 
-    public void attack2(Pokemon target) {
+    public boolean attack2(Pokemon target) {
         int attackDamage = 120;
 
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Energy("Colorless"));
 
         if (!checkEnergyRequirements(requirements)) {
-            return;
+            return false;
         }
 
         if (getType().equals(target.getWeakness()))
@@ -43,10 +44,11 @@ public class Voltorb extends Pokemon {
         else if (getType().equals(target.getResistance()))
             attackDamage -= 20;
 
-        Log.message(getName() + " used " + getAttack1Name() + " dealing " + attackDamage + " damage to itself! \n");
+        Log.message(getName() + " used " + getAttack1Name() + " dealing " + 90 + " damage to itself! \n");
         takeDamage(90);
         Log.message(getName() + " used " + getAttack1Name() + " on " + target.getName() + " dealing " + attackDamage + " damage! \n");
         target.takeDamage(attackDamage);
+        return true;
     }
 
 }

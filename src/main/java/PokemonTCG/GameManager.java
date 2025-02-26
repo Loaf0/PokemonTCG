@@ -1,9 +1,4 @@
 package PokemonTCG;
-/*
- * Due Tuesday
- * determine odds of mulligan for each number of pokemon run 10,000 times
- * ex 1 pokemon 59 energies
- */
 
 import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Energy;
@@ -29,7 +24,7 @@ public class GameManager {
 
     public void run(){
         // check if user wants to run deck builder
-        setupGame(true, true);
+        setupGame(false, false);
         setUpTurnOrder();
         setupHands();
         startGameLoop();
@@ -155,8 +150,8 @@ public class GameManager {
                         System.out.println("You cannot attack on the first turn!");
                         break;
                     }
-                    promptAttack(p);
-                    playingTurn = false;
+                    // if the attack is successful stop loop
+                    playingTurn = !promptAttack(p);
                     break;
                 case 3:
                     p.showHand();
@@ -235,18 +230,11 @@ public class GameManager {
     }
 
     public boolean playCard(Card c, Player p) {
-        if (c instanceof Pokemon || c instanceof Trainer) {
+        if (c instanceof Pokemon || c instanceof Trainer)
             return c.playCard(c, p);
-        }
-        if (c instanceof Energy){
-            if(!canPlayEnergy) {
-                System.out.println("You can only play energy ONCE per turn!");
-                return false;
-            }
+        if (c instanceof Energy)
             return attachEnergy((Energy) c, p);
-        }
-
-                Log.message(c.getName() + "ERROR : Object is not a card");
+        Log.message(c.getName() + "ERROR : Object is not a card");
         return false;
     }
 
@@ -257,15 +245,21 @@ public class GameManager {
      * @param p the player taking the turn.
      */
     private boolean attachEnergy(Energy e, Player p) {
-        if (p.getBench().getActiveCard() == null)
+        if (p.getBench().getActiveCard() == null){
+            System.out.println("You must have a Pokemon in play!");
             return false;
+        }
+        if (!canPlayEnergy){
+           System.out.println("You can only play 1 energy per turn!");
+           return false;
+        }
 
         int size = p.getBench().getCards().size();
 
         System.out.println("Which pokemon do you want to attach " + e.getName() + " to?");
         System.out.println("  0. " + p.getBench().getActiveCard().getName() + " (Active Pokemon)");
         for (int i = 0; i < size; i++) {
-            System.out.println("  " + (i + 1) + ". " + p.getHand().getCards().get(i).getName());
+            System.out.println("  " + (i + 1) + ". " + p.getBench().getCards().get(i).getName());
         }
 
         boolean looping = true;
@@ -284,7 +278,7 @@ public class GameManager {
         else {
             p.getBench().getCards().get(userInput).attachEnergy(e);
         }
-
+        canPlayEnergy = false;
         return true;
     }
 
@@ -327,10 +321,10 @@ public class GameManager {
      *
      * @param p the player taking the turn.
      */
-    public void promptAttack(Player p){
+    public boolean promptAttack(Player p){
         if(p.getBench().getActiveCard() == null){
             System.out.println(p.getName() + " doesn't have an active Pokemon");
-            return;
+            return false;
         }
         System.out.println("Choose Attack :");
 
@@ -346,14 +340,16 @@ public class GameManager {
 
         boolean looping = true;
         int userInput;
-        while(looping){
+        while (looping){
             userInput = input.nextInt();
             if (userInput == 1 && !c.getAttack1Name().isEmpty()){
-                c.attack1(opponent.getBench().getActiveCard());
+                if (!c.attack1(opponent.getBench().getActiveCard()))
+                    return false;
                 looping = false;
             }
             else if (userInput == 2 && !c.getAttack2Name().isEmpty()) {
-                c.attack2(opponent.getBench().getActiveCard());
+                if (!c.attack2(opponent.getBench().getActiveCard()))
+                    return false;
                 looping = false;
             }
             else
@@ -369,20 +365,17 @@ public class GameManager {
             if(opponent.getPrize().getCards().isEmpty()){
                 Log.message(opponent.getName() + " has beaten all of " + p.getName() + "'s Pokemon and won! \n");
                 p.setLostFlag(true);
-                return;
             }
-
-            if(p.getBench().getCards().isEmpty()){
+            else if(p.getBench().getCards().isEmpty()){
                 Log.message(p.getName() + " has no active pokemon and loses the battle! \n");
                 p.setLostFlag(true);
-                return;
             }
             else {
                 promptNewActive(p);
             }
         }
+        return true;
     }
-
 
     public void promptRetreat(Player p){
         if(p.getBench().getActiveCard() == null){

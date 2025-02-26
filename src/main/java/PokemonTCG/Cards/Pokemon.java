@@ -71,14 +71,14 @@ public class Pokemon extends Card {
      *
      * @param target pokemon who is target of attack
      */
-    public void attack1(Pokemon target) {
-        //weakness * 2 resist - 20 flat
+    public boolean attack1(Pokemon target) {
+        // weakness * 2 resist - 20 flat
         int attackDamage = 10;
 
         ArrayList<Energy> requirements = new ArrayList<>();
 
         if (!checkEnergyRequirements(requirements)) {
-            return;
+            return false;
         }
 
         if (getType().equals(target.getWeakness()))
@@ -87,11 +87,13 @@ public class Pokemon extends Card {
             attackDamage -= 20;
 
         target.takeDamage(attackDamage);
+        return true;
     }
 
-    public void attack2(Pokemon target) {
+    public boolean attack2(Pokemon target) {
         if (!attack2Name.isEmpty())
-            attack1(target);
+            return attack1(target);
+        return false;
     }
 
     public boolean checkEnergyRequirements(ArrayList<Energy> requirements) {

@@ -9,6 +9,5 @@ public class StartGame {
         // new MonteCarlo().exportMulliganBrickedAsCSV("");
         // System.out.println(new ActiveCardCollector().getActiveCards().toString());
         getGameManager().run();
-
     }
 }

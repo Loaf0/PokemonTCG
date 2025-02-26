@@ -1,6 +1,8 @@
 package PokemonTCG.Cards.PokemonCards;
 
 import PokemonTCG.Cards.Energy;
+import PokemonTCG.Cards.EnergyCards.Colorless;
+import PokemonTCG.Cards.EnergyCards.Psychic;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Log;
 
@@ -14,7 +16,7 @@ public class MrMime extends Pokemon {
         setAttack1Desc("Flip 4 coins. This card does 10 damage times the number of heads. Req [PSYC, COLR]");
     }
 
-    public void attack1(Pokemon target) {
+    public boolean attack1(Pokemon target) {
         int attackDamage = 20;
         int dmgMultiplier = 0;
 
@@ -25,12 +27,12 @@ public class MrMime extends Pokemon {
         attackDamage *= dmgMultiplier;
 
         ArrayList<Energy> requirements = new ArrayList<>();
-        requirements.add(new Energy("Psychic"));
-        requirements.add(new Energy("Colorless"));
+        requirements.add(new Psychic());
+        requirements.add(new Colorless());
 
         if (!checkEnergyRequirements(requirements)) {
             System.out.println(getName() + " is missing the required energy!");
-            return;
+            return false;
         }
 
         if (getType().equals(target.getWeakness()))
@@ -40,5 +42,6 @@ public class MrMime extends Pokemon {
 
         Log.message(getName() + " used " + getAttack1Name() + " on " + target.getName() + " dealing " + attackDamage + " damage! \n");
         target.takeDamage(attackDamage);
+        return true;
     }
 }
