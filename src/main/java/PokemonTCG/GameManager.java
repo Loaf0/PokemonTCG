@@ -23,7 +23,9 @@ public class GameManager {
     private Scanner input;
 
     public void run(){
-        // check if user wants to run deck builder
+        // check if user wants to run deck builder - GIVE STATISTICS ON MULLIGAN BASED ON THE DECK WHEN COMPLETED
+        if (!mainMenu())
+            return;
         setupGame(false, false);
         setUpTurnOrder();
         setupHands();
@@ -31,11 +33,11 @@ public class GameManager {
         endingGame();
     }
 
+    // replace with deck builder temp deck or choice of decks
     public void setupGame(boolean p1AI, boolean p2AI) {
         turnCount = 0;
         running = true;
 
-        input = new Scanner(System.in);
         p1 = new Player(p1AI);
         p1.setName("Player 1");
         p2 = new Player(p2AI);
@@ -65,7 +67,7 @@ public class GameManager {
 
 
     public void setUpTurnOrder(){
-        Log.message("Deciding what player goes first... \nHeads : " + p1.getName() + " - Tails : " + p2.getName() + "\n");
+        Log.message("Deciding what player goes first... \nHeads : " + p1.getName() + "  -  Tails : " + p2.getName() + "\n");
         if (flipCoin()){
             Player temp = p1;
             p1 = p2;
@@ -90,9 +92,10 @@ public class GameManager {
 
     public void endingGame(){
         Log.saveLog();
-        System.out.println("Someone wins return to menu or quit game?");
+        System.out.println("Someone wins return to menu or quit game? Restart menu not added yet");
         // on return to menu restart gameManager
         // on quit scan.close(); and end
+        input.close();
     }
 
     /**
@@ -467,5 +470,48 @@ public class GameManager {
                 "\n  1. Play Card    4. Retreat           7. End turn " +
                 "\n  2. Attack       5. Inspect Card" +
                 "\n  3. Show Hand    6. Show Game State");
+    }
+
+    public boolean mainMenu(){
+        input = new Scanner(System.in);
+
+        System.out.println(
+                " _____     _                                _____ _____ _____          \n" +
+                "| ___ \\   | |                              |_   _/  __ \\  __ \\      \n" +
+                "| |_/ /__ | | _____ _ __ ___   ___  _ __     | | | /  \\/ |  \\/       \n" +
+                "|  __/ _ \\| |/ / _ \\ '_ ` _ \\ / _ \\| '_ \\    | | | |   | | __     \n" +
+                "| | | (_) |   <  __/ | | | | | (_) | | | |   | | | \\__/\\ |_\\ \\     \n" +
+                "\\_|  \\___/|_|\\_\\___|_| |_| |_|\\___/|_| |_|   \\_/  \\____/\\____/ \n");
+        System.out.println(" 1. Play Game \n" +
+                " 2. Build Deck \n" +
+                " 3. Monte Carlo Simulations \n" +
+                " 4. Exit Game \n");
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            userInput = input.nextInt();
+            if (userInput > 0 && userInput <= 4)
+                looping = false;
+            else
+                System.out.println("Please enter a valid option [1 - 4]");
+        }
+
+        switch (userInput){
+            case 1:
+                System.out.println("Starting Game...");
+                return true;
+            case 2:
+                System.out.println("Starting Deck builder");
+                break;
+            case 3:
+                System.out.println("Starting Monte Carlo Simulations");
+                break;
+            case 4:
+                System.out.println("Exiting Game...");
+                return false;
+        }
+
+        return true;
     }
 }

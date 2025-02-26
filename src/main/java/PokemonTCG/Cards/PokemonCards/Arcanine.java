@@ -19,7 +19,6 @@ public class Arcanine extends Pokemon {
 
     public boolean attack1(Pokemon target) {
         int attackDamage = 20;
-        int dmgMultiplier = 0;
 
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Fire());
@@ -43,7 +42,6 @@ public class Arcanine extends Pokemon {
 
     public boolean attack2(Pokemon target) {
         int attackDamage = 120;
-        int dmgMultiplier = 0;
 
         ArrayList<Energy> requirements = new ArrayList<>();
         requirements.add(new Fire());
