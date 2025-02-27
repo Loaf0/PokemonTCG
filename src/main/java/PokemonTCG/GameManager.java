@@ -5,7 +5,6 @@ import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.EnergyCards.Colorless;
 import PokemonTCG.Cards.EnergyCards.Psychic;
 import PokemonTCG.Cards.Pokemon;
-import PokemonTCG.Cards.PokemonCards.Arcanine;
 import PokemonTCG.Cards.PokemonCards.MrMime;
 import PokemonTCG.Cards.PokemonCards.Voltorb;
 import PokemonTCG.Cards.Trainer;
@@ -22,7 +21,7 @@ public class GameManager {
     private boolean canPlayEnergy;
     private Player p1;
     private Player p2;
-    private Deck[] usableDecks;
+    private ArrayList<Deck> usableDecks;
     private Scanner input;
 
     public void run() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -567,11 +566,9 @@ public class GameManager {
             name = input.nextLine();
         }
         newDeck.setName(name);
+        usableDecks.add(newDeck);
 
-        // when saving deck prompt user to name the deck
-        // save the deck to list of usable decks
-
-        // when its done add choosing a deck to the start up game method
+        // save the deck to file in future???
     }
 
     public boolean mainMenu() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
