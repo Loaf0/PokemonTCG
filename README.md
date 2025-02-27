@@ -1,6 +1,7 @@
 
 # Pokemon TCG
-
+Completion 90%
+<br>
 This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and Applied Statistics At Stockton.
 
 # Features
@@ -12,6 +13,8 @@ This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and A
   - Save share and reuse deck lists
 - Modding Support
   - Any Java Classes added to PokemonCards Or TrainerCard Packages will be added to the deck builders list of usable cards
+  - Package Locations : PokemonTCG/Cards/PokemonCards  or PokemonTCG/Cards/TrainerCards
+# Cards Added
 
 ## Energy Card Types And Codes :
 | Type      | Code  |
@@ -28,9 +31,8 @@ This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and A
 | Fairy     | FAIR  |
 | Dragon    | DRGN  |
 
-# Cards Added
-
 ## Pokemon
+
 ### Arcanine
 
 | Stats         | Value    |
@@ -74,6 +76,7 @@ This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and A
 | Explosion  | Deal 120 Damage. This attack deals 90 damage to itself. Req [COLR]                       |
 
 ## Trainers
+
 | Trainer | Effects      |
 |---------|--------------|
 | Bill    | Draw 2 Cards |

@@ -6,9 +6,15 @@ import java.util.ArrayList;
 
 public class Deck {
 
+    private String name; // only for premade decks
     private ArrayList<Card> cards;
 
     public Deck() {
+        cards = new ArrayList<Card>();
+    }
+
+    public Deck(String name) {
+        this.name = name;
         cards = new ArrayList<Card>();
     }
 
@@ -58,8 +64,19 @@ public class Deck {
         return cards;
     }
 
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
     public int size(){
         return cards.size();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

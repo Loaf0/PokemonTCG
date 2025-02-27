@@ -5,11 +5,13 @@ import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.EnergyCards.Colorless;
 import PokemonTCG.Cards.EnergyCards.Psychic;
 import PokemonTCG.Cards.Pokemon;
+import PokemonTCG.Cards.PokemonCards.Arcanine;
 import PokemonTCG.Cards.PokemonCards.MrMime;
 import PokemonTCG.Cards.PokemonCards.Voltorb;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Cards.TrainerCards.Bill;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,9 +22,10 @@ public class GameManager {
     private boolean canPlayEnergy;
     private Player p1;
     private Player p2;
+    private Deck[] usableDecks;
     private Scanner input;
 
-    public void run(){
+    public void run() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         // check if user wants to run deck builder - GIVE STATISTICS ON MULLIGAN BASED ON THE DECK WHEN COMPLETED
         if (!mainMenu())
             return;
@@ -445,7 +448,7 @@ public class GameManager {
      *
      * @param rowNumber the row number
      * @param valuesPerRow amount of items per row
-     * @param p player whos bench is being retrieved
+     * @param p player whose bench is being retrieved
      */
     private String getBenchRows(int rowNumber, int valuesPerRow, Player p) {
         ArrayList<Pokemon> benchCards = p.getBench().getCards();
@@ -465,6 +468,8 @@ public class GameManager {
         }
     }
 
+
+
     public void printTurnMenu(){
         System.out.println("What will you do : " +
                 "\n  1. Play Card    4. Retreat           7. End turn " +
@@ -472,7 +477,104 @@ public class GameManager {
                 "\n  3. Show Hand    6. Show Game State");
     }
 
-    public boolean mainMenu(){
+    /**
+     * Print the page of cards for the deck builder
+     *
+     * @param cardList the array of cards to be used
+     * @param currPage page you wish to display
+     * @return int the highest option on each page (used to limit play choices)
+     */
+    private int showCardPage(ArrayList<Class<? extends Card>> cardList, int currPage){
+        int pages =  cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;
+        int options = currPage == pages ? cardList.size() % 8 : 8;
+        int choice = 0;
+        int max = (currPage * 8) + options;
+
+        for (int i = currPage * 8; i < max; i++){
+            try {
+                System.out.println("  " + choice + ". " + cardList.get(i).getDeclaredConstructor().newInstance().getName());
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+            choice++;
+        }
+        if (currPage > 0)
+            System.out.println("  8. Previous Page");
+        if (currPage < pages)
+            System.out.println("  9. Next Page");
+
+        return options;
+    }
+
+    public void createDeck() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        // uses reflection to get all card classes from pokemon energy and trainer packages
+        ArrayList<Class<? extends Card>> cardList = new ActiveCardCollector().getActiveCards();
+        Deck newDeck = new Deck();
+
+        int maxPage = cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;
+        int curPage = 0;
+
+        while (newDeck.size() < 60){
+            System.out.println("Enter the Card # [0-7] or input [8-9] to change pages");
+            int options = showCardPage(cardList, curPage);
+
+            int userInputCard = input.nextInt();
+            int userInputQuantity = 0;
+
+            if (userInputCard > 0 && userInputCard <= options - 1){
+                System.out.println("Enter the quantity [1-4]");
+                userInputQuantity = input.nextInt();
+
+                if (userInputQuantity <= 4 && userInputQuantity > 0){
+                    if(userInputQuantity == 1){
+                        newDeck.add(cardList.get(userInputCard + (8 * (curPage))).getDeclaredConstructor().newInstance());
+                        System.out.println(newDeck.getCards().get(newDeck.size()-1).getName() + " was added");
+                    }
+                    else {
+                        if(newDeck.size() + userInputQuantity <= 60){
+                            for (int i = 0; i < userInputQuantity; i++) {
+                                newDeck.add(cardList.get(userInputCard + (8 * (curPage))).getDeclaredConstructor().newInstance());
+                            }
+                            System.out.println(userInputQuantity + " " + newDeck.getCards().get(newDeck.size()-1).getName() + "s were added");
+                        }
+                        else
+                            System.out.println("You are adding to many cards " + (newDeck.size() + userInputQuantity) + " / 60");
+                    }
+                }
+                else
+                    System.out.println("Invalid Quantity try [1-4]");
+            }
+
+            if(userInputCard == 8){
+                if (curPage > 0)
+                    curPage--;
+                else
+                    System.out.println("There are no previous pages");
+            }
+
+            if(userInputCard == 9){
+                if (curPage < maxPage)
+                    curPage++;
+                else
+                    System.out.println("There are no more page");
+            }
+            // make the user only be able to add 4 of each card that isnt energy
+        }
+
+        System.out.println("Name your deck : ");
+        String name = "";
+        while(name.isEmpty()){
+            name = input.nextLine();
+        }
+        newDeck.setName(name);
+
+        // when saving deck prompt user to name the deck
+        // save the deck to list of usable decks
+
+        // when its done add choosing a deck to the start up game method
+    }
+
+    public boolean mainMenu() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         input = new Scanner(System.in);
 
         System.out.println(
@@ -503,7 +605,8 @@ public class GameManager {
                 return true;
             case 2:
                 System.out.println("Starting Deck builder");
-                break;
+                createDeck();
+                return false; // temp for testing
             case 3:
                 System.out.println("Starting Monte Carlo Simulations");
                 break;
