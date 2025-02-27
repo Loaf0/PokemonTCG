@@ -485,7 +485,7 @@ public class GameManager {
      */
     private int showCardPage(ArrayList<Class<? extends Card>> cardList, int currPage){
         int pages =  cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;
-        int options = currPage == pages ? cardList.size() % 8 : 8;
+        int options = currPage < pages - 1 ? 8 : cardList.size() % 8;
         int choice = 0;
         int max = (currPage * 8) + options;
 
@@ -499,7 +499,7 @@ public class GameManager {
         }
         if (currPage > 0)
             System.out.println("  8. Previous Page");
-        if (currPage < pages)
+        if (currPage < pages - 1)
             System.out.println("  9. Next Page");
 
         return options;
@@ -510,7 +510,7 @@ public class GameManager {
         ArrayList<Class<? extends Card>> cardList = new ActiveCardCollector().getActiveCards();
         Deck newDeck = new Deck();
 
-        int maxPage = cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;
+        int maxPage = cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;;
         int curPage = 0;
 
         while (newDeck.size() < 60){
@@ -552,7 +552,7 @@ public class GameManager {
             }
 
             if(userInputCard == 9){
-                if (curPage < maxPage)
+                if (curPage < maxPage - 1)
                     curPage++;
                 else
                     System.out.println("There are no more page");
