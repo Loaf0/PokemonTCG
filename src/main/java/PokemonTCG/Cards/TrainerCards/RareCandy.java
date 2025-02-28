@@ -1,18 +1,24 @@
 package PokemonTCG.Cards.TrainerCards;
 
 import PokemonTCG.Cards.Card;
+import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.Trainer;
 import PokemonTCG.Player;
 
 public class RareCandy extends Trainer {
 
     public RareCandy() {
-        super("Rare Candy", "Draw 2 Cards");
+        // Different card effect because evolutions are not implemented yet
+        super("Rare Candy", "Active Pokemon Gains 30 Hp");
     }
 
     @Override
     public boolean playCard(Card c, Player p) {
-        System.out.println("rare candy used");
+        Pokemon m = p.getBench().getActiveCard();
+        if (m != null){
+            m.setHp(m.getHp() + 30);
+            return true;
+        }
         return false;
     }
 

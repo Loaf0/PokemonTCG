@@ -1,9 +1,8 @@
 package PokemonTCG;
 
 /*
- * uses factory so specific cards can interact with the game in any way.
+ * Factory of design pattern for Game manager that allows the same static object to be obtained by other classes.
  * @author Tyler Snyder
- *
  */
 public class GameManagerFactory {
 

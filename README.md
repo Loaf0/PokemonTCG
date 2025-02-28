@@ -77,6 +77,7 @@ This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and A
 
 ## Trainers
 
-| Trainer | Effects      |
-|---------|--------------|
-| Bill    | Draw 2 Cards |
+| Trainer              | Effects                            |
+|----------------------|------------------------------------|
+| Bill                 | Draw 2 Cards                       |
+| Professor's Research | Discard your Hand and Draw 7 Cards |

@@ -8,10 +8,6 @@ public class Card {
     private String name;
     private String type;
 
-    public Card(){
-
-    }
-
     public boolean playCard(Card c, Player p) {
         return false;
     }
@@ -31,6 +27,5 @@ public class Card {
     public void setType(String type) {
         this.type = type;
     }
-
 
 }

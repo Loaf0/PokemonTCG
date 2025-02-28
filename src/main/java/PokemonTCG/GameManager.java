@@ -1,15 +1,14 @@
 package PokemonTCG;
 
+/*
+ * The class that handles the majority of game logic and turn structure
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Energy;
-import PokemonTCG.Cards.EnergyCards.Colorless;
-import PokemonTCG.Cards.EnergyCards.Psychic;
 import PokemonTCG.Cards.Pokemon;
-import PokemonTCG.Cards.PokemonCards.MrMime;
-import PokemonTCG.Cards.PokemonCards.Voltorb;
 import PokemonTCG.Cards.Trainer;
-import PokemonTCG.Cards.TrainerCards.Bill;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,8 +34,15 @@ public class GameManager {
         endingGame();
     }
 
-    // replace with deck builder temp deck or choice of decks
     public void setupGame(boolean p1AI, boolean p2AI) {
+        // Verify that it isn't overwriting deck list from deck builder
+        if (usableDecks == null){
+            usableDecks = new ArrayList<>();
+        }
+
+        // Populate Starter Decks
+        usableDecks.addAll(new StarterDecks().getStarterDecks());
+
         turnCount = 0;
         running = true;
 
@@ -45,28 +51,31 @@ public class GameManager {
         p2 = new Player(p2AI);
         p2.setName("Player 2");
 
-        Deck testDeck = new Deck();
-
-        for (int i = 0; i < 10; i++) {
-            Card c = new MrMime();
-            Card d = new Voltorb();
-            testDeck.add(c);
-            testDeck.add(d);
-        }
-        for (int i = 0; i < 20; i++) {
-            Card c = new Bill();
-            testDeck.add(c);
-        }
-        for (int i = 0; i < 10; i++) {
-            Card c = new Psychic();
-            Card d = new Colorless();
-            testDeck.add(c);
-            testDeck.add(d);
-        }
-        p1.setDeck(testDeck);
-        p2.setDeck(testDeck);
+        initializePlayer(p1);
+        initializePlayer(p2);
     }
 
+    /**
+     * Helper method for setup game that initializes the players name and deck
+     * @param p Player to be initialized
+     */
+    private void initializePlayer(Player p){
+        System.out.println("Enter " + p.getName() +  "'s Name : ");
+        String name = "";
+        while(name.isEmpty()){
+            name = input.nextLine();
+        }
+        p.setName(name);
+
+        System.out.println("Pick a Deck");
+        for (int i = 0; i < usableDecks.size(); i++) {
+            System.out.println("  " + i + ". " + usableDecks.get(i).getName());
+        }
+
+        int userInput = input.nextInt();
+
+        p.setDeck(usableDecks.remove(userInput));
+    }
 
     public void setUpTurnOrder(){
         Log.message("Deciding what player goes first... \nHeads : " + p1.getName() + "  -  Tails : " + p2.getName() + "\n");
@@ -318,7 +327,7 @@ public class GameManager {
         Card c = p.getHand().getCards().get(userInput);
 
         if(playCard(c, p))
-            p.getHand().getCards().remove(userInput);
+            p.getDiscard().add(p.getHand().getCards().remove(userInput));
     }
 
     /**
@@ -361,7 +370,7 @@ public class GameManager {
                 System.out.println("Please enter a valid option");
         }
 
-        // check if pokemon was killed during own attack ex. self dmg voltorb dies first
+        // check if pokemon was killed during own attack ex. self dmg dies first
         if (p.getBench().getActiveCard() != null && p.getBench().getActiveCard().getHp() == 0){
             Log.message(p.getBench().getActiveCard().getName() + " has fainted! \n");
 
@@ -510,7 +519,11 @@ public class GameManager {
         ArrayList<Class<? extends Card>> cardList = new ActiveCardCollector().getActiveCards();
         Deck newDeck = new Deck();
 
-        int maxPage = cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;;
+        if (usableDecks == null) {
+            usableDecks = new ArrayList<>();
+        }
+
+        int maxPage = cardList.size() % 8 == 0 ? cardList.size() / 8 : (cardList.size() / 8) + 1;
         int curPage = 0;
 
         while (newDeck.size() < 60){
@@ -557,7 +570,7 @@ public class GameManager {
                 else
                     System.out.println("There are no more page");
             }
-            // make the user only be able to add 4 of each card that isnt energy
+            // make the user only be able to add 4 of each card that isn't energy
         }
 
         System.out.println("Name your deck : ");
@@ -575,16 +588,20 @@ public class GameManager {
         input = new Scanner(System.in);
 
         System.out.println(
-                " _____     _                                _____ _____ _____          \n" +
-                "| ___ \\   | |                              |_   _/  __ \\  __ \\      \n" +
-                "| |_/ /__ | | _____ _ __ ___   ___  _ __     | | | /  \\/ |  \\/       \n" +
-                "|  __/ _ \\| |/ / _ \\ '_ ` _ \\ / _ \\| '_ \\    | | | |   | | __     \n" +
-                "| | | (_) |   <  __/ | | | | | (_) | | | |   | | | \\__/\\ |_\\ \\     \n" +
-                "\\_|  \\___/|_|\\_\\___|_| |_| |_|\\___/|_| |_|   \\_/  \\____/\\____/ \n");
-        System.out.println(" 1. Play Game \n" +
-                " 2. Build Deck \n" +
-                " 3. Monte Carlo Simulations \n" +
-                " 4. Exit Game \n");
+                """
+                         _____     _                                _____ _____ _____         \s
+                        | ___ \\   | |                              |_   _/  __ \\  __ \\     \s
+                        | |_/ /__ | | _____ _ __ ___   ___  _ __     | | | /  \\/ |  \\/      \s
+                        |  __/ _ \\| |/ / _ \\ '_ ` _ \\ / _ \\| '_ \\    | | | |   | | __    \s
+                        | | | (_) |   <  __/ | | | | | (_) | | | |   | | | \\__/\\ |_\\ \\    \s
+                        \\_|  \\___/|_|\\_\\___|_| |_| |_|\\___/|_| |_|   \\_/  \\____/\\____/\s
+                        """);
+        System.out.println("""
+                 1. Play Game\s
+                 2. Build Deck\s
+                 3. Monte Carlo Simulations\s
+                 4. Exit Game\s
+                """);
 
         boolean looping = true;
         int userInput = 0;
