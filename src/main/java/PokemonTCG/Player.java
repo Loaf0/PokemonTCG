@@ -1,5 +1,10 @@
 package PokemonTCG;
 
+/*
+ * class containing all a players data containers
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Cards.Card;
 
 public class Player {

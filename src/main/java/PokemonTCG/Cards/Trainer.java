@@ -1,5 +1,10 @@
 package PokemonTCG.Cards;
 
+/*
+ * subclass of cards extend act as base of all trainer cards
+ * @author Tyler Snyder
+ */
+
 public class Trainer extends Card {
 
     String description;

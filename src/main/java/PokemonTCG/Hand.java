@@ -1,5 +1,10 @@
 package PokemonTCG;
 
+/*
+ * assisting data container for Player to hold playable cards
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Pokemon;
 

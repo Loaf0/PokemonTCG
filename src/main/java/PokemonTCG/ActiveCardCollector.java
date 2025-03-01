@@ -1,5 +1,10 @@
 package PokemonTCG;
 
+/*
+ * This class collects all usable cards from the Cards using reflection to be used in the deck builder
+ * @author Tyler Snyder
+ */
+
 import java.util.ArrayList;
 import java.util.Set;
 import PokemonTCG.Cards.Card;

@@ -1,7 +1,11 @@
 package PokemonTCG;
 
+/*
+ * class containing all the monte carlo simulations along with outputting them for easy data viewing
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Cards.Card;
-import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.EnergyCards.Colorless;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.TrainerCards.RareCandy;

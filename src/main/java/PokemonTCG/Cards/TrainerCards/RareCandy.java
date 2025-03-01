@@ -17,7 +17,7 @@ public class RareCandy extends Trainer {
     public boolean playCard(Card c, Player p) {
         Pokemon m = p.getBench().getActiveCard();
         if (m != null){
-            Log.message(p.getName() + " Played Rare Candy!\n");
+            Log.message(p.getName() + " Played " + getName() + "!\n");
             m.setHp(m.getHp() + 30);
             Log.message(m.getName() + " gained 30 HP\n");
             return true;

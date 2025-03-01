@@ -1,9 +1,15 @@
 package PokemonTCG;
 
+/*
+ * Custom log class to print, log and save the battle logs
+ * @author Tyler Snyder
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Log {
 
@@ -27,10 +33,18 @@ public class Log {
             exportBattleLog(log, "");
     }
 
-    public static void exportBattleLog(StringBuilder sb, String path) { // print sys time and append to path
-        LocalDate currentDate = LocalDate.now();
+    /**
+     * Helper method for saveLog()
+     *
+     * @param sb String builder containing full battle log
+     * @param path save location for file
+     */
+    private static void exportBattleLog(StringBuilder sb, String path) { // print sys time and append to path
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String dateTime = currentDateTime.format(formatter);
 
-        path = path.isEmpty() ? "../PokemonTCGExports/" + currentDate + "-BattleLog.txt" : path;
+        path = path.isEmpty() ? "../PokemonTCGExports/" + dateTime  + "-BattleLog.txt" : path;
         File f = new File(path);
 
         try (PrintWriter pw = new PrintWriter(f)){

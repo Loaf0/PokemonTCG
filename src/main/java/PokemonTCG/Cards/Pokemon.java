@@ -1,31 +1,14 @@
 package PokemonTCG.Cards;
 
+/*
+ * subclass of cards extend act as base of all pokemon cards
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Log;
 import PokemonTCG.Player;
 
 import java.util.ArrayList;
-
-/*
-Pokemon updates 2 and 3
-
-add evolutions
-tier 1 2 & 3 pokemon (unsure about 2)
-add rare candy
-
-find chances of rare candy falling into prize pile
-draw a hand and make sure you don't mulligan Then check find the probability of bricking from [1-4] rare candy
-
-third check up task
-1-4 different pokemon cards
-1-5 different trainer cards
-as much energy as you choose otherwise
-
-sample deck : 20 pokemon - 30 trainer - 10 energy
-
-make the game playable against yourself or an ai (not needed to think about outcomes, but uses all options)
-Document everything in comments / Java doc / Human instruction manual
-+ List of all things that should be extra credit
- */
 
 public class Pokemon extends Card {
 
@@ -57,6 +40,13 @@ public class Pokemon extends Card {
         energy = new ArrayList<>();
     }
 
+    /**
+     * handle playing pokemon cards and attaching to bench
+     *
+     * @param c card to be played
+     * @param p owner of card
+     * @return if card was valid to be played
+     */
     public boolean playCard(Card c, Player p) {
         if (c instanceof Pokemon && p.getBench().hasOpenSlots()){
             p.getBench().addToBench((Pokemon) c);
@@ -67,35 +57,32 @@ public class Pokemon extends Card {
     }
 
     /**
-     * temporary method used to create attack methods based on
+     * super method for attacking
      *
      * @param target pokemon who is target of attack
+     * @return boolean if attack was successful
      */
     public boolean attack1(Pokemon target) {
-        // weakness * 2 resist - 20 flat
-        int attackDamage = 10;
-
-        ArrayList<Energy> requirements = new ArrayList<>();
-
-        if (!checkEnergyRequirements(requirements)) {
-            return false;
-        }
-
-        if (getType().equals(target.getWeakness()))
-            attackDamage *= 2;
-        else if (getType().equals(target.getResistance()))
-            attackDamage -= 20;
-
-        target.takeDamage(attackDamage);
-        return true;
+        return false;
     }
-
+    /**
+     * super method for attacking redirects to attack1 if invalid
+     *
+     * @param target pokemon who is target of attack
+     * @return boolean if attack was successful
+     */
     public boolean attack2(Pokemon target) {
         if (!attack2Name.isEmpty())
             return attack1(target);
         return false;
     }
 
+    /**
+     * check if energy requirements are met
+     *
+     * @param requirements array of energies needed
+     * @return boolean if requirements are met
+     */
     public boolean checkEnergyRequirements(ArrayList<Energy> requirements) {
         ArrayList<Energy> currEnergy = new ArrayList<>(energy);
 

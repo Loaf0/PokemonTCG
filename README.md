@@ -4,6 +4,10 @@ Completion 90%
 <br>
 This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and Applied Statistics At Stockton.
 
+make the game playable against yourself or an ai (not needed to think about outcomes, but uses all options)
+Document everything in comments / Java doc / Human instruction manual
+List of all things that should be extra credit
+
 # Features
 - Battle Logs History saved to computer
 - Playable against Players or AI

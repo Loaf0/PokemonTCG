@@ -1,12 +1,16 @@
 package PokemonTCG;
 
-import PokemonTCG.Cards.Card;
+/*
+ * assisting data container for Player to selection of cards
+ * @author Tyler Snyder
+ */
 
+import PokemonTCG.Cards.Card;
 import java.util.ArrayList;
 
 public class Deck {
 
-    private String name; // only for premade decks
+    private String name; // only for pre-made decks
     private ArrayList<Card> cards;
 
     public Deck() {

@@ -98,6 +98,9 @@ public class GameManager {
         p.setDeck(usableDecks.remove(userInput));
     }
 
+    /**
+     * Randomize what player moves first
+     */
     public void setUpTurnOrder(){
         Log.message("Deciding what player goes first... \nHeads : " + p1.getName() + "  -  Tails : " + p2.getName() + "\n");
         if (flipCoin()){
@@ -108,6 +111,9 @@ public class GameManager {
         Log.message(p1.getName() + " goes first!\n");
     }
 
+    /**
+     * run looping turn structure
+     */
     public void startGameLoop(){
         while(running){
             printGameState();
@@ -122,6 +128,9 @@ public class GameManager {
         }
     }
 
+    /**
+     * Clean up game
+     */
     public void endingGame(){
         System.out.println("Saving Battle Log...");
         Log.saveLog();
@@ -139,7 +148,7 @@ public class GameManager {
         if (p.getBench().getActiveCard() != null && p.getBench().getActiveCard().getHp() == 0){
             Log.message(p.getBench().getActiveCard().getName() + " has fainted! \n");
 
-            //remove all energy and add to discard
+            //remove all energy and add to discard when fainting
             for (Card c : p.getBench().getActiveCard().getEnergy())
                 p.getDiscard().add(c);
             p.getBench().getActiveCard().setEnergy(new ArrayList<Energy>());
@@ -164,6 +173,7 @@ public class GameManager {
             }
         }
 
+        // check if the player has lost
         if (p.getPrize().getCards().isEmpty()){
             p.setLostFlag(true);
             return;
@@ -175,6 +185,7 @@ public class GameManager {
         Log.message(p.getName() + " draws 1 card \n");
         p.drawCard();
 
+        // user input for turn structure
         boolean playingTurn = true;
         printTurnMenu();
         while(playingTurn){
@@ -185,32 +196,32 @@ public class GameManager {
                 input.next();
 
             switch(option){
-                case 1:
+                case 1: // play card
                     promptPlayCard(p);
                     printTurnMenu();
                     break;
-                case 2:
+                case 2: // attack
                     if (turnCount == 0) {
                         System.out.println("You cannot attack on the first turn!");
                         break;
                     }
-                    // if the attack is successful stop loop
+                    // if the attack is successful end turn
                     playingTurn = !promptAttack(p);
                     break;
-                case 3:
+                case 3: // show hand
                     p.showHand();
                     break;
-                case 4:
+                case 4: // retreat
                     promptRetreat(p);
                     break;
-                case 5:
+                case 5: // inspect card
                     promptInspect(p);
                     printTurnMenu();
                     break;
-                case 6:
+                case 6: // show game state
                     printGameState();
                     break;
-                case 7:
+                case 7: // end turn
                     if(p.getBench().getActiveCard() == null){
                         System.out.println("You must have an active pokemon before ending your turn!");
                         break;
@@ -222,13 +233,13 @@ public class GameManager {
                     break;
             }
         }
-
         Log.message("Ending Turn! \n\n");
-        // play 1 energy and any number of other cards if desired
-
         turnCount++;
     }
 
+    /**
+     * handle drawing initial cards and mulligan checking / comparisons
+     */
     public void setupHands(){
         int p1MulliganCounter = 0;
         int p2MulliganCounter = 0;
@@ -274,6 +285,12 @@ public class GameManager {
         return flip;
     }
 
+    /**
+     * handle playing card of any type
+     *
+     * @param c the card to be played
+     * @param p owner of card played
+     */
     public boolean playCard(Card c, Player p) {
         if (c instanceof Pokemon || c instanceof Trainer)
             return c.playCard(c, p);
@@ -437,6 +454,11 @@ public class GameManager {
         return true;
     }
 
+    /**
+     * handle playing card of any type
+     *
+     * @param p player whose turn it is
+     */
     public void promptRetreat(Player p){
         if (p.getBench().getActiveCard() == null){
             System.out.println("You need an active Pokemon first!");
@@ -479,6 +501,11 @@ public class GameManager {
 
     }
 
+    /**
+     * handling inspection of cards of each type from hand
+     *
+     * @param p player inspect cards in hand
+     */
     public void promptInspect(Player p){
         int size = p.getHand().getCards().size();
 
@@ -614,7 +641,9 @@ public class GameManager {
     }
 
 
-
+    /**
+     * print the turn options
+     */
     public void printTurnMenu(){
         System.out.println("What will you do : " +
                 "\n  1. Play Card    4. Retreat           7. End turn " +
@@ -651,6 +680,9 @@ public class GameManager {
         return options;
     }
 
+    /**
+     * the deck builder menu that pulls all cards from card package with reflection and prompts the user for creation of decks
+     */
     public void createDeck() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         // uses reflection to get all card classes from pokemon energy and trainer packages
         ArrayList<Class<? extends Card>> cardList = new ActiveCardCollector().getActiveCards();
@@ -743,6 +775,9 @@ public class GameManager {
         usableDecks.add(newDeck);
     }
 
+    /**
+     * calling the Monte Carlo simulators that export data for users
+     */
     public void launchSimulator() throws IOException {
         System.out.println("Simulations : ");
         System.out.println("  1. Export Chance of drawing a Mulligan");
@@ -839,5 +874,17 @@ public class GameManager {
                 return false;
         }
         return true;
+    }
+
+    public Scanner getInput() {
+        return input;
+    }
+
+    public Player getP1() {
+        return p1;
+    }
+
+    public Player getP2() {
+        return p2;
     }
 }

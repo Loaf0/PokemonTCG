@@ -1,6 +1,10 @@
 package PokemonTCG;
 
-import PokemonTCG.Cards.Card;
+/*
+ * assisting data container for Player to hold benched and active pokemon
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Cards.Pokemon;
 
 import java.util.ArrayList;

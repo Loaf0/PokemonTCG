@@ -1,6 +1,10 @@
 package PokemonTCG.Cards;
 
-import PokemonTCG.GameManager;
+/*
+ * superclass base for cards to extend
+ * @author Tyler Snyder
+ */
+
 import PokemonTCG.Player;
 
 public class Card {
