@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon TCG Simulator</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: auto;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        img {
+            max-width: 150px;
+            margin-left: 20px;
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            background-color: #f5f5dc; /* light cream color */
+            border-radius: 10px; /* rounded corners */
+            padding: 20px;
+            margin-bottom: 20px;
+            flex-direction: column;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+        }
+
+        .container img {
+            max-width: 150px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Pokemon TCG</h1>
+<p>Version : 1.0</p>
+<p>This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and Applied Statistics At Stockton.</p>
+
+<h2>Features</h2>
+<ul>
+    <li>Battle Logs History saved to computer</li>
+    <li>Playable against Other Players Locally</li>
+    <li>Monte Carlo Simulations for finding Mulligan Chances</li>
+    <li>Deck Builder
+        <ul>
+            <li>Use prebuilt decks or create your own!</li>
+            <li>Save share and reuse deck lists</li>
+        </ul>
+    </li>
+    <li>Modding Support
+        <ul>
+            <li>Any Java Classes added to PokemonCards Or TrainerCard Packages will be added to the deck builders list of usable cards</li>
+            <li>Package Locations : PokemonTCG/Cards/PokemonCards  or PokemonTCG/Cards/TrainerCards</li>
+            <li><b>WARNING</b> - <i>Do not install mods from untrusted sources</i></li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Cards Added</h2>
+
+<h3>Energy Card Types And Codes :</h3>
+<table>
+    <tr><th>Type</th><th>Code</th></tr>
+    <tr><td>Grass</td><td>GRAS</td></tr>
+    <tr><td>Fire</td><td>FIRE</td></tr>
+    <tr><td>Water</td><td>WATR</td></tr>
+    <tr><td>Lightning</td><td>LGTN</td></tr>
+    <tr><td>Psychic</td><td>PSYC</td></tr>
+    <tr><td>Fighting</td><td>FGTG</td></tr>
+    <tr><td>Darkness</td><td>DARK</td></tr>
+    <tr><td>Metal</td><td>METL</td></tr>
+    <tr><td>Colorless</td><td>COLR</td></tr>
+    <tr><td>Fairy</td><td>FAIR</td></tr>
+    <tr><td>Dragon</td><td>DRGN</td></tr>
+</table>
+
+<h3>Trainers</h3>
+<table>
+    <tr><th>Trainer</th><th>Effects</th></tr>
+    <tr><td>Bill</td><td>Draw 2 Cards</td></tr>
+    <tr><td>Professor's Research</td><td>Discard your Hand and Draw 7 Cards</td></tr>
+    <tr><td>Cynthia</td><td>Shuffle your hand into your deck. Then, Draw 6 Cards</td></tr>
+    <tr><td>Energy Search</td><td>Draw the first energy card found in your deck. Shuffle Deck</td></tr>
+    <tr><td>PokeDex</td><td>Look at the top 3 cards of your deck.</td></tr>
+    <tr><td>Pokemon Catcher</td><td>Flip a coin. If heads, switch 1 of your opponent's Benched Pokemon with their Active Pokemon</td></tr>
+    <tr><td>Rare Candy</td><td>Active Pokemon Gains 30 HP <i>(Temporary effect until Evolution is added)</i></td></tr>
+    <tr><td>Switch</td><td>Switch your Active with 1 of your benched Pokemon</td></tr>
+</table>
+
+<h3>Pokemon</h3>
+
+<h4>Arcanine</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Fire</td></tr>
+        <tr><td>Health</td><td>130</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Water</td></tr>
+        <tr><td>Retreat Costs</td><td>3 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/4/42/0059Arcanine.png/800px-0059Arcanine.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Crunch</td><td>Deal 30 Damage. Flip a coin. If heads discard an energy from your opponent's active pokemon. Req [FIRE, COLR]</td></tr>
+    <tr><td>Fire Mane</td><td>Deal 120 Damage. Req [FIRE, FIRE, COLR]</td></tr>
+</table>
+
+<h4>Cradily</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Grass</td></tr>
+        <tr><td>Health</td><td>120</td></tr>
+        <tr><td>Resistance</td><td>Water</td></tr>
+        <tr><td>Weakness</td><td>Fire</td></tr>
+        <tr><td>Retreat Costs</td><td>2 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/e/ee/0346Cradily.png/250px-0346Cradily.png">
+
+
+    <table>
+        <tr><th>Moves</th><th>Description</th></tr>
+        <tr><td>Spiral Drain</td><td>Deal 60 Damage. Heal 20 damage from this Pokemon. Req [GRAS, COLR, COLR]</td></tr>
+    </table>
+
+</div>
+
+<h4>Bruxish</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Water</td></tr>
+        <tr><td>Health</td><td>110</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Lightning</td></tr>
+        <tr><td>Retreat Costs</td><td>1 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/a/ac/0779Bruxish.png/500px-0779Bruxish.png">
+
+    <table>
+        <tr><th>Moves</th><th>Description</th></tr>
+        <tr><td>Bite</td><td>Deal 20 Damage. Req [COLR]</td></tr>
+        <tr><td>Surf</td><td>Deal 110 Damage. Req [WATR, WATR, COLR]</td></tr>
+    </table>
+</div>
+
+<h4>Duraludon</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Metal</td></tr>
+        <tr><td>Health</td><td>130</td></tr>
+        <tr><td>Resistance</td><td>Grass</td></tr>
+        <tr><td>Weakness</td><td>Fire</td></tr>
+        <tr><td>Retreat Costs</td><td>2 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/f/f4/0884Duraludon.png/250px-0884Duraludon.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Hammer In</td><td>Deal 30 Damage. Req [METL]</td></tr>
+    <tr><td>Raging Hammer</td><td>Deal 80 Damage. This attack deals additional damage for all damage taken. Req [METL, METL, COLR]</td></tr>
+</table>
+
+<h4>Heatmor</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Fire</td></tr>
+        <tr><td>Health</td><td>110</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Water</td></tr>
+        <tr><td>Retreat Costs</td><td>1 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/3/33/0631Heatmor.png/250px-0631Heatmor.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Energy Burner</td><td>Deal 30 Damage. This attack deals 30 more damage for each energy attached to your opponent's Active Pokemon. Req [FIRE, FIRE]</td></tr>
+</table>
+
+<h4>Sawk</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Fighting</td></tr>
+        <tr><td>Health</td><td>90</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Psychic</td></tr>
+        <tr><td>Retreat Costs</td><td>1 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/7/77/0539Sawk.png/250px-0539Sawk.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Sweep the Leg</td><td>Deal 30 Damage. Flip a coin. If heads discard an energy from your opponent's active pokemon. Req [FGTG]</td></tr>
+</table>
+
+<h4>Throh</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Fighting</td></tr>
+        <tr><td>Health</td><td>100</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Psychic</td></tr>
+        <tr><td>Retreat Costs</td><td>3 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/6/68/0538Throh.png/250px-0538Throh.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Freestyle Strike</td><td>Deal 30x Damage. Flip 2 coins. This attack does 30 damage times the number of heads. Req [FGTG, COLR]</td></tr>
+    <tr><td>Shoulder Throw</td><td>Deal 80 Damage. Does 80 damage minus 20 for each energy in the defending Pokemon's retreat cost. Req [FGTG, COLR, COLR]</td></tr>
+</table>
+
+<h4>Mr. Mime</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Psychic</td></tr>
+        <tr><td>Health</td><td>80</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Psychic</td></tr>
+        <tr><td>Retreat Costs</td><td>1 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/f/fb/0122Mr._Mime.png/250px-0122Mr._Mime.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Juggling</td><td>Flip 4 coins. This card does 10 damage times the number of heads. Req [PSYC, COLR]</td></tr>
+</table>
+
+<h4>Voltorb</h4>
+<div class="container">
+    <table>
+        <tr><th>Stats</th><th>Value</th></tr>
+        <tr><td>Type</td><td>Lightning</td></tr>
+        <tr><td>Health</td><td>90</td></tr>
+        <tr><td>Resistance</td><td>None</td></tr>
+        <tr><td>Weakness</td><td>Fighting</td></tr>
+        <tr><td>Retreat Costs</td><td>1 Energy</td></tr>
+    </table>
+    <img src="https://archives.bulbagarden.net/media/upload/thumb/5/55/0100Voltorb.png/250px-0100Voltorb.png">
+</div>
+
+<table>
+    <tr><th>Moves</th><th>Description</th></tr>
+    <tr><td>Sonic Boom</td><td>Deal 40 Damage. This attack damage isn't affected by weakness or resistances. Req [COLR]</td></tr>
+    <tr><td>Explosion</td><td>Deal 120 Damage. This attack deals 90 damage to itself. Req [COLR]</td></tr>
+</table>
+
+</body>
+</html>
