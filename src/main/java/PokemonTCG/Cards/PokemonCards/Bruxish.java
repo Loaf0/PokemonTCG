@@ -14,7 +14,7 @@ public class Bruxish extends Pokemon {
 
     public Bruxish() {
         super("Water", 110, "None", "Lightning", 1, "Bite", "Surf");
-        setName("Cradily");
+        setName("Bruxish");
         setAttack1Desc("Deal 20 Damage. Req [COLR]");
         setAttack1Desc("Deal 110 Damage. Req [WATR, WATR, COLR]");
     }
