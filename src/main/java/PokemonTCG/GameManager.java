@@ -9,8 +9,12 @@ import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.Trainer;
+
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GameManager {
@@ -23,7 +27,10 @@ public class GameManager {
     private ArrayList<Deck> usableDecks;
     private Scanner input;
 
-    public void run() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    /**
+     * Start the Pokemon TCG Simulator
+     */
+    public void run() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IOException {
         // check if user wants to run deck builder - GIVE STATISTICS ON MULLIGAN BASED ON THE DECK WHEN COMPLETED
         if (!mainMenu())
             return;
@@ -34,6 +41,12 @@ public class GameManager {
         endingGame();
     }
 
+    /**
+     * set up the players and decks
+     *
+     * @param p1AI if the associated player is AI
+     * @param p2AI if the associated player is AI
+     */
     public void setupGame(boolean p1AI, boolean p2AI) {
         // Verify that it isn't overwriting deck list from deck builder
         if (usableDecks == null){
@@ -62,18 +75,26 @@ public class GameManager {
     private void initializePlayer(Player p){
         System.out.println("Enter " + p.getName() +  "'s Name : ");
         String name = "";
+
         while(name.isEmpty()){
             name = input.nextLine();
         }
-        p.setName(name);
+        p.setName(name.trim());
 
-        System.out.println("Pick a Deck");
+        System.out.println("Pick a Deck :");
         for (int i = 0; i < usableDecks.size(); i++) {
             System.out.println("  " + i + ". " + usableDecks.get(i).getName());
         }
 
-        int userInput = input.nextInt();
-
+        int userInput = -1;
+        while (userInput >= usableDecks.size() || userInput < 0) {
+            if(input.hasNextInt())
+                userInput = input.nextInt();
+            else{
+                System.out.println("Please enter a number [0-" + (usableDecks.size()-1) + "]");
+                input.next();
+            }
+        }
         p.setDeck(usableDecks.remove(userInput));
     }
 
@@ -102,10 +123,9 @@ public class GameManager {
     }
 
     public void endingGame(){
+        System.out.println("Saving Battle Log...");
         Log.saveLog();
-        System.out.println("Someone wins return to menu or quit game? Restart menu not added yet");
-        // on return to menu restart gameManager
-        // on quit scan.close(); and end
+
         input.close();
     }
 
@@ -118,6 +138,12 @@ public class GameManager {
         // check if active pokemon is alive
         if (p.getBench().getActiveCard() != null && p.getBench().getActiveCard().getHp() == 0){
             Log.message(p.getBench().getActiveCard().getName() + " has fainted! \n");
+
+            //remove all energy and add to discard
+            for (Card c : p.getBench().getActiveCard().getEnergy())
+                p.getDiscard().add(c);
+            p.getBench().getActiveCard().setEnergy(new ArrayList<Energy>());
+            p.getDiscard().add(p.getBench().getActiveCard());
 
             Player opponent = p == p1 ? p2 : p1;
             opponent.collectPrize();
@@ -152,7 +178,11 @@ public class GameManager {
         boolean playingTurn = true;
         printTurnMenu();
         while(playingTurn){
-            int option = input.nextInt();
+            int option = 0;
+            if(input.hasNextInt())
+                option = input.nextInt();
+            else
+                input.next();
 
             switch(option){
                 case 1:
@@ -175,6 +205,7 @@ public class GameManager {
                     break;
                 case 5:
                     promptInspect(p);
+                    printTurnMenu();
                     break;
                 case 6:
                     printGameState();
@@ -187,7 +218,7 @@ public class GameManager {
                     playingTurn = false;
                     break;
                 default:
-                    System.out.println("The option that was selected is not available please Input [1 - 6]");
+                    System.out.println("The option that was selected is not available please Input [1 - 7]");
                     break;
             }
         }
@@ -278,12 +309,16 @@ public class GameManager {
 
         boolean looping = true;
         int userInput = 0;
+
         while(looping){
-            userInput = input.nextInt() - 1;
+            if (input.hasNextInt())
+                userInput = input.nextInt() - 1;
             if (userInput >= -1 && userInput < size)
                 looping = false;
-            else
+            else{
+                input.next();
                 System.out.println("Please enter a valid option");
+            }
         }
 
         if(userInput == -1){
@@ -313,11 +348,17 @@ public class GameManager {
         boolean looping = true;
         int userInput = 0;
         while(looping){
-            userInput = input.nextInt() - 1;
+            if(input.hasNextInt())
+                userInput = input.nextInt() - 1;
+            else{
+                userInput = -2;
+                input.next();
+            }
             if (userInput >= -1 && userInput < size)
                 looping = false;
-            else
+            else{
                 System.out.println("Please enter a valid option");
+            }
         }
 
         if (userInput == -1){
@@ -355,7 +396,12 @@ public class GameManager {
         boolean looping = true;
         int userInput;
         while (looping){
-            userInput = input.nextInt();
+            userInput = 0;
+            if(input.hasNextInt())
+                userInput = input.nextInt();
+            else
+                input.next();
+
             if (userInput == 1 && !c.getAttack1Name().isEmpty()){
                 if (!c.attack1(opponent.getBench().getActiveCard()))
                     return false;
@@ -392,21 +438,110 @@ public class GameManager {
     }
 
     public void promptRetreat(Player p){
-        if(p.getBench().getActiveCard() == null){
-            System.out.println(p.getName() + " doesn't have an active Pokemon");
+        if (p.getBench().getActiveCard() == null){
+            System.out.println("You need an active Pokemon first!");
             return;
         }
-        System.out.println("Choose Attack :");
+        if (p.getBench().getCards().isEmpty()){
+            System.out.println("You need a Pokemon in your bench!");
+            return;
+        }
+        if (!p.getBench().getActiveCard().canRetreat()){
+            System.out.println("Your active Pokemon doesn't have enough energy to retreat!");
+            return;
+        }
+
+        int size = p.getBench().getCards().size();
+
+        System.out.println("Which pokemon will be your new active pokemon?");
+
+        for (int i = 0; i < size; i++) {
+            System.out.println("  " + (i + 1) + ". " + p.getBench().getCards().get(i).getName());
+        }
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            if (input.hasNextInt())
+                userInput = input.nextInt() - 1;
+            if (userInput >= 0 && userInput < size)
+                looping = false;
+            else{
+                input.next();
+                System.out.println("Please enter a valid option");
+            }
+        }
+        Pokemon c = p.getBench().getActiveCard();
+        p.getBench().setActiveCard(userInput);
+        p.getBench().addToBench(c);
+        Log.message(c.getName() + " retreated!\n");
+        Log.message(p.getBench().getActiveCard().getName() + " came out to fight!\n");
+
     }
 
     public void promptInspect(Player p){
-        // ask user where the card you want to inspect is
-        // options bench hand active card
-        // stats would be
+        int size = p.getHand().getCards().size();
+
+        System.out.println("Which card will you inspect?");
+        System.out.println("  0. Return to menu");
+        for (int i = 0; i < size; i++) {
+            System.out.println("  " + (i + 1) + ". " + p.getHand().getCards().get(i).getName());
+        }
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            if (input.hasNextInt())
+                userInput = input.nextInt() - 1;
+            else{
+                input.next();
+                userInput = -2;
+            }
+
+            if (userInput >= -1 && userInput < size)
+                looping = false;
+            else
+                System.out.println("Please enter a valid option");
+        }
+
+        if (userInput == -1){
+            return;
+        }
+
+        Card c = p.getHand().getCards().get(userInput);
+
+        if (c instanceof Energy){
+            System.out.println("It is a/an " + c.getName() + " you can attach this to Pokemon to use attacks!");
+        }
+        else if (c instanceof Trainer){
+            System.out.println("This is " + c.getName() + " when played the following effect plays out \n" + ((Trainer) c).getDescription());
+        }
+        else if (c instanceof Pokemon){
+            int hp = ((Pokemon) c).getHp();
+            int maxHp = ((Pokemon) c).getMaxHp();
+            String resist = ((Pokemon) c).getResistance();
+            String weakness = ((Pokemon) c).getWeakness();
+            int retreatCost = ((Pokemon) c).getRetreatCost();
+            String attack1Name = ((Pokemon) c).getAttack1Name();
+            String attack2Name = ((Pokemon) c).getAttack2Name();
+
+            System.out.println(c.getName() + "\n  Stats :\n    HP:" + hp + "/" + maxHp + "\n    Resistant : " + resist + "\n    Weakness : " + weakness + "\n    Retreat Cost : " + retreatCost);
+            System.out.println("  Attacks :");
+            if(!attack1Name.isEmpty()){
+                String attackDescription = ((Pokemon) c).getAttack1Desc();
+                System.out.println("    " + attack1Name + " - " + attackDescription);
+            }
+            if(!attack2Name.isEmpty()){
+                String attackDescription = ((Pokemon) c).getAttack2Desc();
+                System.out.println("    " + attack2Name + " - " + attackDescription);
+            }
+
+        }
+
     }
 
     /**
-     * change active pokemon after retreat or faint
+     * change active pokemon after faint
      *
      * @param p the player taking the turn.
      */
@@ -425,8 +560,10 @@ public class GameManager {
             userInput = input.nextInt() - 1;
             if (userInput >= 0 && userInput < size)
                 looping = false;
-            else
+            else{
+                input.next();
                 System.out.println("Please enter a valid option");
+            }
         }
 
         p.getBench().setActiveCard(userInput);
@@ -517,6 +654,7 @@ public class GameManager {
     public void createDeck() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         // uses reflection to get all card classes from pokemon energy and trainer packages
         ArrayList<Class<? extends Card>> cardList = new ActiveCardCollector().getActiveCards();
+        Map<Class<? extends Card>, Integer> cardQuantityMap = new HashMap<>();
         Deck newDeck = new Deck();
 
         if (usableDecks == null) {
@@ -530,24 +668,47 @@ public class GameManager {
             System.out.println("Enter the Card # [0-7] or input [8-9] to change pages");
             int options = showCardPage(cardList, curPage);
 
-            int userInputCard = input.nextInt();
+            int userInputCard = 0;
+            if (input.hasNextInt())
+                userInputCard = input.nextInt();
+            else
+                input.next();
+
             int userInputQuantity = 0;
 
-            if (userInputCard > 0 && userInputCard <= options - 1){
+            if (userInputCard >= 0 && userInputCard < options){
                 System.out.println("Enter the quantity [1-4]");
-                userInputQuantity = input.nextInt();
+                if (input.hasNextInt())
+                    userInputQuantity = input.nextInt();
+                else
+                    input.next();
 
+                Class<? extends Card> cardClass = cardList.get(userInputCard + (8 * curPage));
+                Card tempCard = cardClass.getDeclaredConstructor().newInstance();
+
+                // limit all cards but energy
+                if (!(tempCard instanceof Energy)) {
+                    int currentCount = cardQuantityMap.getOrDefault(cardClass, 0);
+                    // check if the user will add more then 4 cards
+                    if (currentCount + userInputQuantity > 4) {
+                        System.out.println("You cannot add more than 4 copies of " + tempCard.getName());
+                        continue;
+                    } else {
+                        // update amount of cards in deck per class
+                        cardQuantityMap.put(cardClass, currentCount + userInputQuantity);
+                    }
+                }
                 if (userInputQuantity <= 4 && userInputQuantity > 0){
                     if(userInputQuantity == 1){
-                        newDeck.add(cardList.get(userInputCard + (8 * (curPage))).getDeclaredConstructor().newInstance());
-                        System.out.println(newDeck.getCards().get(newDeck.size()-1).getName() + " was added");
+                        newDeck.add(tempCard);
+                        System.out.println(tempCard.getName() + " was added");
                     }
                     else {
                         if(newDeck.size() + userInputQuantity <= 60){
                             for (int i = 0; i < userInputQuantity; i++) {
-                                newDeck.add(cardList.get(userInputCard + (8 * (curPage))).getDeclaredConstructor().newInstance());
+                                newDeck.add(tempCard);
                             }
-                            System.out.println(userInputQuantity + " " + newDeck.getCards().get(newDeck.size()-1).getName() + "s were added");
+                            System.out.println(userInputQuantity + " " + tempCard.getName() + "s were added");
                         }
                         else
                             System.out.println("You are adding to many cards " + (newDeck.size() + userInputQuantity) + " / 60");
@@ -557,22 +718,22 @@ public class GameManager {
                     System.out.println("Invalid Quantity try [1-4]");
             }
 
+            // handle page swapping input handling
             if(userInputCard == 8){
                 if (curPage > 0)
                     curPage--;
                 else
                     System.out.println("There are no previous pages");
             }
-
             if(userInputCard == 9){
                 if (curPage < maxPage - 1)
                     curPage++;
                 else
                     System.out.println("There are no more page");
             }
-            // make the user only be able to add 4 of each card that isn't energy
         }
 
+        // name deck and add to usable decks
         System.out.println("Name your deck : ");
         String name = "";
         while(name.isEmpty()){
@@ -580,11 +741,51 @@ public class GameManager {
         }
         newDeck.setName(name);
         usableDecks.add(newDeck);
-
-        // save the deck to file in future???
     }
 
-    public boolean mainMenu() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void launchSimulator() throws IOException {
+        System.out.println("Simulations : ");
+        System.out.println("  1. Export Chance of drawing a Mulligan");
+        System.out.println("  2. Export Chance of drawing a Mulligan OR Bricking");
+
+        boolean looping = true;
+        int userInput = 0;
+        while(looping){
+            userInput = input.nextInt();
+            if (userInput > 0 && userInput < 3)
+                looping = false;
+            else{
+                input.next();
+                System.out.println("Please enter a valid option [1-2]");
+            }
+        }
+
+        switch (userInput){
+            case 1:
+                new MonteCarlo().exportAllMulliganDataAsCSV("", 10000);
+                break;
+            case 2:
+                System.out.println("How many Pokemon are in the deck?");
+                looping = true;
+                userInput = 0;
+                while(looping){
+                    userInput = input.nextInt();
+                    if (userInput > 0 && userInput <= 56)
+                        looping = false;
+                    else{
+                        input.next();
+                        System.out.println("Please enter a valid option [1-2]");
+                    }
+                }
+                new MonteCarlo().exportMulliganBrickedAsCSV("", userInput);
+                break;
+        }
+    }
+
+    /**
+     * Call, display and accept user input for the main menu
+     */
+    public boolean mainMenu() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IOException {
         input = new Scanner(System.in);
 
         System.out.println(
@@ -606,7 +807,11 @@ public class GameManager {
         boolean looping = true;
         int userInput = 0;
         while(looping){
-            userInput = input.nextInt();
+            if (input.hasNextInt())
+                userInput = input.nextInt();
+            else
+                input.next();
+
             if (userInput > 0 && userInput <= 4)
                 looping = false;
             else
@@ -620,15 +825,19 @@ public class GameManager {
             case 2:
                 System.out.println("Starting Deck builder");
                 createDeck();
-                return false; // temp for testing
+                return true;
             case 3:
                 System.out.println("Starting Monte Carlo Simulations");
-                break;
+                try {
+                    launchSimulator();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
             case 4:
                 System.out.println("Exiting Game...");
                 return false;
         }
-
         return true;
     }
 }

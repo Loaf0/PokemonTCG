@@ -3,6 +3,7 @@ package PokemonTCG;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
 public class Log {
 
@@ -27,7 +28,9 @@ public class Log {
     }
 
     public static void exportBattleLog(StringBuilder sb, String path) { // print sys time and append to path
-        path = path.isEmpty() ? "../PokemonTCGExports/BattleLog.txt" : path;
+        LocalDate currentDate = LocalDate.now();
+
+        path = path.isEmpty() ? "../PokemonTCGExports/" + currentDate + "-BattleLog.txt" : path;
         File f = new File(path);
 
         try (PrintWriter pw = new PrintWriter(f)){

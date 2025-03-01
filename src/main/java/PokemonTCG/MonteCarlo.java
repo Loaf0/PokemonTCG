@@ -18,7 +18,7 @@ public class MonteCarlo {
         int mulligans = 0;
 
         for (int i = 0; i < iterations; i++) {
-            Player p = getPlayer(i, 0);
+            Player p = getPlayer(numOfPokemon, 0);
             if (p.passMulliganCheck())
                 mulligans++;
         }
@@ -27,14 +27,9 @@ public class MonteCarlo {
         return chance;
     }
 
-    public void exportAllMulliganDataAsCSV(int iterations, String path) throws IOException {
-        path = path.isEmpty() ? "../PokemonTCGExports/export.csv" : path;
+    public void exportAllMulliganDataAsCSV(String path, int iterations) throws IOException {
+        path = path.isEmpty() ? "../PokemonTCGExports/mulliganExport.csv" : path;
         File f = new File(path);
-
-        if (!f.getParentFile().mkdirs()){
-            System.out.println("Path could not be created");
-            return;
-        }
 
         try (PrintWriter pw = new PrintWriter(f)){
             StringBuilder sb = new StringBuilder();
@@ -46,19 +41,15 @@ public class MonteCarlo {
             }
 
             pw.write(sb.toString());
+            System.out.println("Saving output to " + path);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void exportMulliganBrickedAsCSV(String path) throws IOException {
-        path = path.isEmpty() ? "../PokemonTCGExports/export.csv" : path;
+    public void exportMulliganBrickedAsCSV(String path, int numberOfPokemon) throws IOException {
+        path = path.isEmpty() ? "../PokemonTCGExports/mulliganBrickExport.csv" : path;
         File f = new File(path);
-
-        if (f.exists()) {
-            System.out.println("File already exists");
-            return;
-        }
 
         try (PrintWriter pw = new PrintWriter(f)){
             StringBuilder sb = new StringBuilder();
@@ -66,10 +57,11 @@ public class MonteCarlo {
 
             for (int i = 1; i <= 4; i++) {
                 DecimalFormat df = new DecimalFormat("#.000");
-                sb.append(i).append(",").append(df.format(calculateMulliganBrickChance(20, i, 10000))).append("\n");
+                sb.append(i).append(",").append(df.format(calculateMulliganBrickChance(numberOfPokemon, i, 10000))).append("\n");
             }
 
             pw.write(sb.toString());
+            System.out.println("Saving output to " + path);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

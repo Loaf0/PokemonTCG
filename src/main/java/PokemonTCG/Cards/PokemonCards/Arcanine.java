@@ -14,7 +14,7 @@ public class Arcanine extends Pokemon {
         super("Fire", 130, "None", "Water", 3, "Crunch", "Fire Mane");
         setName("Arcanine");
         setAttack1Desc("Deal 30 Damage. Flip a coin. If heads discard an energy from your opponents active pokemon Req [FIRE, COLR]");
-        setAttack1Desc("Deal 120 Damage. Req [FIRE, FIRE, COLR]");
+        setAttack2Desc("Deal 120 Damage. Req [FIRE, FIRE, COLR]");
     }
 
     public boolean attack1(Pokemon target) {
