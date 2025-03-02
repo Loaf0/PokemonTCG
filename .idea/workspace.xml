@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Fixed Pokemon Descriptions">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" afterDir="false" />
+    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Fixed error on cards that edit the deck in the playCard method">
       <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/Cynthia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/Cynthia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/ProfessorsResearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/ProfessorsResearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740888468981</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Fixed error on cards that edit the deck in the playCard method">
+      <option name="closed" value="true" />
+      <created>1740951287634</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1740951287634</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -435,7 +439,8 @@
     <MESSAGE value="Added Cards and Starter Decks" />
     <MESSAGE value="Edited readme" />
     <MESSAGE value="Fixed Pokemon Descriptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Pokemon Descriptions" />
+    <MESSAGE value="Fixed error on cards that edit the deck in the playCard method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed error on cards that edit the deck in the playCard method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

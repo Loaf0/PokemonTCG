@@ -2,7 +2,6 @@ package PokemonTCG.Cards.TrainerCards;
 
 import PokemonTCG.Cards.Card;
 import PokemonTCG.Cards.Trainer;
-import PokemonTCG.Hand;
 import PokemonTCG.Log;
 import PokemonTCG.Player;
 
@@ -34,7 +33,7 @@ public class Cynthia extends Trainer {
             Log.message("Drawing 6 Cards!\n");
             p.drawCards(6);
         }
-        return false; // return statement is should delete card this card deletes it self if ran
+        return false; // return statement it should delete card this card deletes itself if ran
     }
 
 }
