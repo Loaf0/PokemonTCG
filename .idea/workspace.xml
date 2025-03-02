@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Edited readme">
+      <change afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Tests/SetTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/ActiveCardCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/ActiveCardCollector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Bench.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Bench.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Energy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Energy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Trainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManagerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManagerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/MonteCarlo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/MonteCarlo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/StarterDecks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/StarterDecks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/ProbabilityAndAppliedStats.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/ProbabilityAndAppliedStats.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/DealOrNoDealSim/DealOrNoDealSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/DealOrNoDealSim/DealOrNoDealSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/BattleSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/BattleSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/SetTheoryFunctions/Set.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/SetTheoryFunctions/Set.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../ProbabilityAndAppliedStats" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Loaf0&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Loaf0/PokemonTCG.git&quot;,
+    &quot;accountId&quot;: &quot;c9e89e94-de9c-4751-bfad-3bbf78158a17&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2sobFtUquJhEV2YMeugoNDgO38V" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.BPTester.executor": "Run",
+    "Application.PokemonTCG.executor": "Run",
+    "Application.PokemonTester.executor": "Run",
+    "Application.SetTester.executor": "Run",
+    "Application.StartGame.executor": "Run",
+    "Application.StartSimulator.executor": "Run",
+    "Application.StatsLibTester.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.SetTest.executor": "Run",
+    "JUnit.SetTest.testIsSubSet.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Programming/IntelliJ/ProbabilityAndAppliedStats",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Programming\IntelliJ\PokemonTCG\src\main\java\PokemonTCG" />
+      <recent name="C:\Programming\IntelliJ\PokemonTCG\src\main\java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="PokemonTCG.Cards.TrainerCards" />
+      <recent name="PokemonTCG.Cards.PokemonCards" />
+      <recent name="PokemonTCG.Cards.EnergyCards" />
+      <recent name="PokemonTCG" />
+      <recent name="Cards.PokemonCards" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.SetTest">
+    <configuration name="PokemonTCG" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="PokemonTCG.StartGame" />
+      <module name="PokemonTCG" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProbabilityAndAppliedStats" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.SetTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SetTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="" />
+      <created>1739124776759</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739124776759</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Pokemon TCG refactor">
+      <option name="closed" value="true" />
+      <created>1739124911699</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739124911699</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Pokemon TCG refactor">
+      <option name="closed" value="true" />
+      <created>1739143650564</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739143650564</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added checking energy requirements for moves">
+      <option name="closed" value="true" />
+      <created>1739145289420</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739145289420</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update">
+      <option name="closed" value="true" />
+      <created>1739151293907</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739151293907</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added Mulligan Calculator with csv export">
+      <option name="closed" value="true" />
+      <created>1739390655878</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739390655878</updated>
+    </task>
+    <task id="LOCAL-00006" summary="uses reflection to dynamically get all cards (setting up for a deck builder)">
+      <option name="closed" value="true" />
+      <created>1739487745904</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739487745904</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added montecarlo assignment 2 and custom log class">
+      <option name="closed" value="true" />
+      <created>1739914354167</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1739914354167</updated>
+    </task>
+    <task id="LOCAL-00008" summary="set up basic gameloop">
+      <option name="closed" value="true" />
+      <created>1739916469663</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739916469663</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Turn order">
+      <option name="closed" value="true" />
+      <created>1739929146445</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1739929146445</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated mulligan mechanics">
+      <option name="closed" value="true" />
+      <created>1739929903471</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739929903471</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Updated turn mechanics">
+      <option name="closed" value="true" />
+      <created>1740091046024</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740091046024</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added more turn options">
+      <option name="closed" value="true" />
+      <created>1740369338218</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740369338218</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added visible bench and adding to bench">
+      <option name="closed" value="true" />
+      <created>1740371311840</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740371311840</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added the ability to attack pokemon">
+      <option name="closed" value="true" />
+      <created>1740505708161</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740505708161</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated attaching energy">
+      <option name="closed" value="true" />
+      <created>1740508197229</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1740508197230</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added all energy types and finished voltorb along with basic battle logic">
+      <option name="closed" value="true" />
+      <created>1740511494486</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1740511494486</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added all energy types and finished voltorb along with basic battle logic">
+      <option name="closed" value="true" />
+      <created>1740529345370</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1740529345370</updated>
+    </task>
+    <task id="LOCAL-00018" summary="EOD Update">
+      <option name="closed" value="true" />
+      <created>1740533744898</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1740533744898</updated>
+    </task>
+    <task id="LOCAL-00019" summary="EOD Update">
+      <option name="closed" value="true" />
+      <created>1740534283208</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1740534283210</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added majority of deck builder logic">
+      <option name="closed" value="true" />
+      <created>1740697511131</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1740697511131</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Deck builder finished">
+      <option name="closed" value="true" />
+      <created>1740697686664</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1740697686664</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fixed oob error for deck builder">
+      <option name="closed" value="true" />
+      <created>1740698264651</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1740698264651</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added deck selection and template decks">
+      <option name="closed" value="true" />
+      <created>1740705131941</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1740705131941</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Fulled implemented deck builder and game loop">
+      <option name="closed" value="true" />
+      <created>1740853501688</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1740853501688</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added Cards and Starter Decks">
+      <option name="closed" value="true" />
+      <created>1740862490303</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1740862490303</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added Cards and Starter Decks">
+      <option name="closed" value="true" />
+      <created>1740865584750</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865584750</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Added Cards and Starter Decks">
+      <option name="closed" value="true" />
+      <created>1740865657224</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865657224</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Edited readme">
+      <option name="closed" value="true" />
+      <created>1740865801169</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865801169</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Edited readme">
+      <option name="closed" value="true" />
+      <created>1740865891049</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1740865891049</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Edited readme">
+      <option name="closed" value="true" />
+      <created>1740866028103</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1740866028103</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Edited readme">
+      <option name="closed" value="true" />
+      <created>1740866270640</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1740866270640</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Edited readme">
+      <option name="closed" value="true" />
+      <created>1740885979769</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1740885979769</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Pokemon TCG refactor" />
+    <MESSAGE value="Added checking energy requirements for moves" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Added Mulligan Calculator with csv export" />
+    <MESSAGE value="uses reflection to dynamically get all cards (setting up for a deck builder)" />
+    <MESSAGE value="Added montecarlo assignment 2 and custom log class" />
+    <MESSAGE value="set up basic gameloop" />
+    <MESSAGE value="Turn order" />
+    <MESSAGE value="Updated mulligan mechanics" />
+    <MESSAGE value="Updated turn mechanics" />
+    <MESSAGE value="Added more turn options" />
+    <MESSAGE value="Added visible bench and adding to bench" />
+    <MESSAGE value="Added the ability to attack pokemon" />
+    <MESSAGE value="updated attaching energy" />
+    <MESSAGE value="added all energy types and finished voltorb along with basic battle logic" />
+    <MESSAGE value="EOD Update" />
+    <MESSAGE value="Added majority of deck builder logic" />
+    <MESSAGE value="Deck builder finished" />
+    <MESSAGE value="Fixed oob error for deck builder" />
+    <MESSAGE value="Added deck selection and template decks" />
+    <MESSAGE value="Fulled implemented deck builder and game loop" />
+    <MESSAGE value="Added Cards and Starter Decks" />
+    <MESSAGE value="Edited readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited readme" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Tests/SetTest.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
