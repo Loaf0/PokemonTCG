@@ -1,7 +1,7 @@
 package PokemonTCG.Cards;
 
 /*
- * superclass base for cards to extend
+ * @description superclass base for cards to extend
  * @author Tyler Snyder
  */
 

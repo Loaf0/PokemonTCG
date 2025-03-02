@@ -8,8 +8,9 @@ This is a text based Pokemon TCG simulator for CSCI-3327-001 - Probability and A
 - Playable against Other Players Locally
 - Monte Carlo Simulations for finding Mulligan Chances
 - Deck Builder
+  - Or use one of the many prebuilt decks! 
   - Use prebuilt decks or create your own!
-- Modding Support
+- Modding Support 
   - Any Java Classes added to PokemonCards Or TrainerCard Packages will be added to the deck builders list of usable cards
   - Package Locations : PokemonTCG/Cards/PokemonCards  or PokemonTCG/Cards/TrainerCards
   - **WARNING** - _Do not install mods from untrusted sources_

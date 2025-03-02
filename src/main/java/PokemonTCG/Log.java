@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * Custom log class to print, log and save the battle logs
+ * @description Custom log class to print, log and save the battle logs
  * @author Tyler Snyder
  */
 

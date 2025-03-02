@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * assisting data container for Player to hold benched and active pokemon
+ * @description assisting data container for Player to hold benched and active pokemon
  * @author Tyler Snyder
  */
 

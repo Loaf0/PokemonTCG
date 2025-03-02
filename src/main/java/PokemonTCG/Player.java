@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * class containing all a players data containers
+ * @description class containing all a players data containers
  * @author Tyler Snyder
  */
 

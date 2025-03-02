@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * assisting data container for Player to selection of cards
+ * @description assisting data container for Player to selection of cards
  * @author Tyler Snyder
  */
 

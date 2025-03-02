@@ -1,7 +1,7 @@
 package PokemonTCG.Cards;
 
 /*
- * subclass of cards extend act as base of all energy cards
+ * @description subclass of cards extend act as base of all energy cards
  * @author Tyler Snyder
  */
 

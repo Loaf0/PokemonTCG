@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * this class creates basic decks for users to play with
+ * @description this class creates basic decks for users to play with
  * @author Tyler Snyder
  */
 
@@ -29,7 +29,7 @@ public class StarterDecks {
 
     private Deck StarterDeckA(){
         Deck d = new Deck();
-        d.setName("Starter Deck A");
+        d.setName("Starter Deck");
 
         // add 4 of each card type
         for (int i = 0; i < 4; i++) {
@@ -41,7 +41,6 @@ public class StarterDecks {
             d.add(new RareCandy());
             d.add(new Psychic());
             d.add(new Psychic());
-            d.add(new Lightning());
             d.add(new Lightning());
             d.add(new Fire());
             d.add(new Fire());

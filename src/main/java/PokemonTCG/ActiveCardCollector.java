@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * This class collects all usable cards from the Cards using reflection to be used in the deck builder
+ * @description This class collects all usable cards from the Cards using reflection to be used in the deck builder
  * @author Tyler Snyder
  */
 

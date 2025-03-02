@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * The class that handles the majority of game logic and turn structure
+ * @description The class that handles the majority of game logic and turn structure
  * @author Tyler Snyder
  */
 

@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * Factory of design pattern for Game manager that allows the same static object to be obtained by other classes.
+ * @description Factory of design pattern for Game manager that allows the same static object to be obtained by other classes.
  * @author Tyler Snyder
  */
 

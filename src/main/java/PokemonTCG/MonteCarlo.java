@@ -1,7 +1,7 @@
 package PokemonTCG;
 
 /*
- * class containing all the monte carlo simulations along with outputting them for easy data viewing
+ * @description class containing all the monte carlo simulations along with outputting them for easy data viewing
  * @author Tyler Snyder
  */
 
