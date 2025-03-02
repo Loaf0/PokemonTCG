@@ -116,7 +116,7 @@ public class Pokemon extends Card {
     }
 
     public boolean canRetreat() {
-        return retreatCost >= energy.size();
+        return retreatCost <= energy.size();
     }
 
     public void takeDamage(int dmg) {

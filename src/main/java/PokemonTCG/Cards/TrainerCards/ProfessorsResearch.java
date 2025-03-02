@@ -17,13 +17,13 @@ public class ProfessorsResearch extends Trainer {
         if (p.canDrawCards(7)){
             Log.message(p.getName() + " Played " + getName() + "!\n");
             for (int i = 0; i < p.getHand().getCards().size(); i++){
-                p.getDiscard().add(p.getHand().getCards().removeFirst());
+                p.getDiscard().add(p.getHand().getCards().get(i));
             }
+            p.getHand().getCards().clear();
             Log.message("Discarding Hand and Drawing 7 Cards\n");
             p.drawCards(7);
-            return true;
         }
-        return false;
+        return false; // return statement is should delete card this card deletes it self if ran
     }
 
 }

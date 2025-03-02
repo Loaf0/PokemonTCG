@@ -90,8 +90,11 @@ public class GameManager {
             if(input.hasNextInt())
                 userInput = input.nextInt();
             else{
-                System.out.println("Please enter a number [0-" + (usableDecks.size()-1) + "]");
+                userInput = -1;
                 input.next();
+            }
+            if (userInput >= usableDecks.size() || userInput < 0){
+                System.out.println("Please enter a number [0-" + (usableDecks.size()-1) + "]");
             }
         }
         p.setDeck(usableDecks.remove(userInput));

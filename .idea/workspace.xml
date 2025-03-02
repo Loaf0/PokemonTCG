@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Edited readme">
+    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Fixed Pokemon Descriptions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Arcanine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Arcanine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Bruxish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Bruxish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Sawk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Sawk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Throh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Throh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/EnergySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/EnergySearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/PokemonCatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/PokemonCatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/Cynthia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/Cynthia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/ProfessorsResearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/ProfessorsResearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +42,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -61,7 +56,7 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.BPTester.executor": "Run",
-    "Application.PokemonTCG.executor": "Run",
+    "Application.PokemonTCG.executor": "Debug",
     "Application.PokemonTester.executor": "Run",
     "Application.SetTester.executor": "Run",
     "Application.StartGame.executor": "Run",
@@ -393,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740885979769</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Fixed Pokemon Descriptions">
+      <option name="closed" value="true" />
+      <created>1740888468981</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1740888468981</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -431,7 +434,8 @@
     <MESSAGE value="Fulled implemented deck builder and game loop" />
     <MESSAGE value="Added Cards and Starter Decks" />
     <MESSAGE value="Edited readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited readme" />
+    <MESSAGE value="Fixed Pokemon Descriptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Pokemon Descriptions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

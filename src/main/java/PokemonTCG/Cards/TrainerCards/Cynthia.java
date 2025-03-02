@@ -16,16 +16,25 @@ public class Cynthia extends Trainer {
     public boolean playCard(Card c, Player p) {
         if (p.canDrawCards(7)){
             Log.message(p.getName() + " Played " + getName() + "!\n");
+
+            boolean discardedSelf = false;
+
             for (int i = 0; i < p.getHand().getCards().size(); i++){
-                p.getDeck().add(p.getHand().getCards().removeFirst());
+                if(!discardedSelf && p.getHand().getCards().get(i).getName().equals(getName())){ // check if card played was discarded
+                    p.getDiscard().add(p.getHand().getCards().get(i));
+                    discardedSelf = true;
+                }
+                else {
+                    p.getDeck().add(p.getHand().getCards().get(i));
+                }
             }
+            p.getHand().getCards().clear();
             Log.message("Shuffling Hand into deck!\n");
             p.shuffle();
             Log.message("Drawing 6 Cards!\n");
             p.drawCards(6);
-            return true;
         }
-        return false;
+        return false; // return statement is should delete card this card deletes it self if ran
     }
 
 }
