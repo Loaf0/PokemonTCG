@@ -47,7 +47,6 @@ public class Sawk extends Pokemon {
             opponent.getDiscard().add(tempCard);
             Log.message("This attack removed " + tempCard.getName() + " from " + target.getName() + " \n");
         }
-
         return true;
     }
 }

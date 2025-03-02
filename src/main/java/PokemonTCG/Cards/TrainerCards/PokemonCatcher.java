@@ -35,7 +35,7 @@ public class PokemonCatcher extends Trainer {
         Log.message(p.getName() + " Played " + getName() + "!\n");
 
         if (gm.flipCoin()){
-            Log.message("Pokemon Catcher Failed!");
+            Log.message("Pokemon Catcher Failed!\n");
             return true;
         }
 

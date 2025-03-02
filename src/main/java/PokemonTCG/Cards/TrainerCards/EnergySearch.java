@@ -18,7 +18,7 @@ public class EnergySearch extends Trainer {
             Log.message(p.getName() + " Played " + getName() + "!\n");
             for (int i = 0; i < p.getDeck().getCards().size(); i++) {
                 if (p.getDeck().getCards().get(i) instanceof Energy){
-                    Log.message("Drawing Energy and shuffling deck");
+                    Log.message("Drawing Energy and shuffling deck\n");
                     p.getHand().addCard(p.getDeck().getCards().remove(i));
                     p.shuffle();
                     return true;

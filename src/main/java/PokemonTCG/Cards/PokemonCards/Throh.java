@@ -15,7 +15,7 @@ public class Throh extends Pokemon {
         super("Fighting", 100, "None", "Psychic", 3, "Freestyle Strike", "Shoulder Throw");
         setName("Throh");
         setAttack1Desc("Deal 30x Damage. Flip 2 coins. This attack does 30 damage times the number of heads. Req [FGTG, COLR]");
-        setAttack1Desc("Deal 80 Damage. Does 80 damage minus 20 for each energy in the defending Pokemon's retreat cost. Req [FGTG, COLR, COLR]");
+        setAttack2Desc("Deal 80 Damage. Does 80 damage minus 20 for each energy in the defending Pokemon's retreat cost. Req [FGTG, COLR, COLR]");
     }
 
     public boolean attack1(Pokemon target) {

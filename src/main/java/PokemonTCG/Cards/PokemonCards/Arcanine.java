@@ -18,7 +18,7 @@ public class Arcanine extends Pokemon {
         super("Fire", 130, "None", "Water", 3, "Crunch", "Fire Mane");
         setName("Arcanine");
         setAttack1Desc("Deal 30 Damage. Flip a coin. If heads discard an energy from your opponents active Pokemon. Req [FIRE, COLR]");
-        setAttack1Desc("Deal 120 Damage. Req [FIRE, FIRE, COLR]");
+        setAttack2Desc("Deal 120 Damage. Req [FIRE, FIRE, COLR]");
     }
 
     public boolean attack1(Pokemon target) {
@@ -39,6 +39,9 @@ public class Arcanine extends Pokemon {
         else if (getType().equals(target.getResistance()))
             attackDamage -= 20;
 
+        Log.message(getName() + " used " + getAttack1Name() + " on " + target.getName() + " dealing " + attackDamage + " damage! \n");
+        target.takeDamage(attackDamage);
+
         if(!target.getEnergy().isEmpty()){
             GameManager gm = GameManagerFactory.getGameManager();
             Player opponent = this == gm.getP1().getBench().getActiveCard() ? gm.getP2() : gm.getP1();
@@ -46,9 +49,6 @@ public class Arcanine extends Pokemon {
             opponent.getDiscard().add(tempCard);
             Log.message("This attack removed " + tempCard.getName() + " from " + target.getName() + " \n");
         }
-
-        Log.message(getName() + " used " + getAttack1Name() + " on " + target.getName() + " dealing " + attackDamage + " damage! \n");
-        target.takeDamage(attackDamage);
 
         return true;
     }

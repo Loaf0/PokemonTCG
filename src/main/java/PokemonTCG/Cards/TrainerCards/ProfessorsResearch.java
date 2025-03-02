@@ -19,7 +19,7 @@ public class ProfessorsResearch extends Trainer {
             for (int i = 0; i < p.getHand().getCards().size(); i++){
                 p.getDiscard().add(p.getHand().getCards().removeFirst());
             }
-            Log.message("Discarding Hand and Drawing 7 Cards");
+            Log.message("Discarding Hand and Drawing 7 Cards\n");
             p.drawCards(7);
             return true;
         }

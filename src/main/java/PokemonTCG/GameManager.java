@@ -31,7 +31,6 @@ public class GameManager {
      * Start the Pokemon TCG Simulator
      */
     public void run() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IOException {
-        // check if user wants to run deck builder - GIVE STATISTICS ON MULLIGAN BASED ON THE DECK WHEN COMPLETED
         if (!mainMenu())
             return;
         setupGame(false, false);
@@ -607,9 +606,9 @@ public class GameManager {
 
         System.out.printf("\n%-50s | %-50s", p1ActivePkm, p2ActivePkm);
 
-        System.out.printf("\n%-50s | %-50s", getBenchRows(0, 3, p1), "Bench : " + getBenchRows(0, 3, p2));
+        System.out.printf("\n%-50s | %-50s", "Bench : " + getBenchRows(0, 3, p1), "Bench : " + getBenchRows(0, 3, p2));
         if(p1.getBench().getCards().size() > 3 || p2.getBench().getCards().size() > 3 )
-            System.out.printf("\n%-50s | %-50s", getBenchRows(1, 3, p1), "Bench : " + getBenchRows(1, 3, p2));
+            System.out.printf("\n%-50s | %-50s", getBenchRows(1, 3, p1), "        " + getBenchRows(1, 3, p2));
 
         System.out.printf("\n%-50s | %-50s", "Hand Size : " + p1.getHand().getCards().size() + "  - Cards Left : " + p1.getDeck().getCards().size(), "Hand Size : " + p2.getHand().getCards().size() + "  - Cards Left : " + p2.getDeck().getCards().size());
         System.out.printf("\n%-50s | %-50s \n", "Prize Cards : " + p1.getPrize().getCards().size(), "Prize Cards : " + p2.getPrize().getCards().size());
@@ -634,9 +633,9 @@ public class GameManager {
         }
 
         if (row.isEmpty()) {
-            return "Bench: None";
+            return "None";
         } else {
-            return "Bench: " + row;
+            return "" + row;
         }
     }
 
@@ -700,7 +699,7 @@ public class GameManager {
             System.out.println("Enter the Card # [0-7] or input [8-9] to change pages");
             int options = showCardPage(cardList, curPage);
 
-            int userInputCard = 0;
+            int userInputCard = -1;
             if (input.hasNextInt())
                 userInputCard = input.nextInt();
             else
@@ -860,7 +859,7 @@ public class GameManager {
             case 2:
                 System.out.println("Starting Deck builder");
                 createDeck();
-                return true;
+                return mainMenu(); // allow more selections while still keeping boolean output
             case 3:
                 System.out.println("Starting Monte Carlo Simulations");
                 try {

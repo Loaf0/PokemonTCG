@@ -84,6 +84,10 @@ public class Pokemon extends Card {
      * @return boolean if requirements are met
      */
     public boolean checkEnergyRequirements(ArrayList<Energy> requirements) {
+        if (energy.size() < requirements.size()){
+            return false;
+        }
+
         ArrayList<Energy> currEnergy = new ArrayList<>(energy);
 
         //indexing of arraylists start from the top to avoid race condition as things are removed

@@ -5,30 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Edited readme">
-      <change afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Tests/SetTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/ActiveCardCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/ActiveCardCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Bench.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Bench.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Energy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Energy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Pokemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/Trainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Arcanine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Arcanine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Bruxish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Bruxish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Sawk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Sawk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Throh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/PokemonCards/Throh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/EnergySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/EnergySearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/PokemonCatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/PokemonCatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/ProfessorsResearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/ProfessorsResearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManagerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/GameManagerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Hand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/MonteCarlo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/MonteCarlo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/StarterDecks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/StarterDecks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/ProbabilityAndAppliedStats.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/ProbabilityAndAppliedStats.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/DealOrNoDealSim/DealOrNoDealSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/DealOrNoDealSim/DealOrNoDealSimulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/PAASFunctions/StatsLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/BattleSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/BattleSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Pokemon/Pokemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/SetTheoryFunctions/Set.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/SetTheoryFunctions/Set.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +30,9 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../ProbabilityAndAppliedStats" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -60,7 +47,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -89,7 +76,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Programming/IntelliJ/ProbabilityAndAppliedStats",
@@ -112,7 +99,7 @@
       <recent name="Cards.PokemonCards" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SetTest">
+  <component name="RunManager" selected="Application.PokemonTCG">
     <configuration name="PokemonTCG" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="PokemonTCG.StartGame" />
       <module name="PokemonTCG" />
