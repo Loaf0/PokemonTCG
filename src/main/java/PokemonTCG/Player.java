@@ -6,6 +6,7 @@ package PokemonTCG;
  */
 
 import PokemonTCG.Cards.Card;
+import PokemonTCG.Cards.Pokemon;
 
 public class Player {
 

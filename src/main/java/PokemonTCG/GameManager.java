@@ -10,6 +10,7 @@ import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.Trainer;
 
+import java.io.Console;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -294,11 +295,15 @@ public class GameManager {
      * @param p owner of card played
      */
     public boolean playCard(Card c, Player p) {
+        if (p.getBench().getActiveCard() == null && !(c instanceof Pokemon)){
+            System.out.println("You must establish an active pokemon first!");
+            return false;
+        }
         if (c instanceof Pokemon || c instanceof Trainer)
             return c.playCard(c, p);
         if (c instanceof Energy)
             return attachEnergy((Energy) c, p);
-        Log.message(c.getName() + "ERROR : Object is not a card");
+        System.out.println(c.getName() + "ERROR : Object is not a card");
         return false;
     }
 

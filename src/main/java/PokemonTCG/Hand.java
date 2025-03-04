@@ -18,6 +18,13 @@ public class Hand {
         hand.add(c);
     }
 
+    public boolean hasPokemon(){
+        for (Card c : hand)
+            if(c instanceof Pokemon)
+                return true;
+        return false;
+    }
+
     public Card removeCard(int slot) {
         if (0 < slot && slot < hand.size())
             return hand.remove(slot);
