@@ -34,6 +34,7 @@ public class MonteCarlo {
     public void exportAllMulliganDataAsCSV(String path, int iterations) throws IOException {
         path = path.isEmpty() ? "../PokemonTCGExports/mulliganExport.csv" : path;
         File f = new File(path);
+        f.getParentFile().mkdirs();
 
         try (PrintWriter pw = new PrintWriter(f)){
             StringBuilder sb = new StringBuilder();
@@ -54,6 +55,7 @@ public class MonteCarlo {
     public void exportMulliganBrickedAsCSV(String path, int numberOfPokemon) throws IOException {
         path = path.isEmpty() ? "../PokemonTCGExports/mulliganBrickExport.csv" : path;
         File f = new File(path);
+        f.getParentFile().mkdirs();
 
         try (PrintWriter pw = new PrintWriter(f)){
             StringBuilder sb = new StringBuilder();
