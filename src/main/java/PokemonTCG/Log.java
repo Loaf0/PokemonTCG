@@ -46,6 +46,7 @@ public class Log {
 
         path = path.isEmpty() ? "../PokemonTCGExports/" + dateTime  + "-BattleLog.txt" : path;
         File f = new File(path);
+        f.getParentFile().mkdirs();
 
         try (PrintWriter pw = new PrintWriter(f)){
             pw.write(sb.toString());
