@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="Fixed error on cards that edit the deck in the playCard method">
-      <change beforePath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/Cynthia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PokemonTCG/Cards/TrainerCards/Cynthia.java" afterDir="false" />
+    <list default="true" id="0f78ad26-a156-4ad7-8545-44a11896d723" name="Changes" comment="typo in comment">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_1_2025_10_30_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_3_1_2025_10_30_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,12 +19,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../ProbabilityAndAppliedStats" />
     <option name="RESET_MODE" value="MIXED" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -48,46 +52,57 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.BPTester.executor": "Run",
-    "Application.PokemonTCG.executor": "Debug",
-    "Application.PokemonTester.executor": "Run",
-    "Application.SetTester.executor": "Run",
-    "Application.StartGame.executor": "Run",
-    "Application.StartSimulator.executor": "Run",
-    "Application.StatsLibTester.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.SetTest.executor": "Run",
-    "JUnit.SetTest.testIsSubSet.executor": "Debug",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Programming/IntelliJ/ProbabilityAndAppliedStats",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.BPTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CSVUtilTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PokemonTCG.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PokemonTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunPlotting.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunPokerSimulation.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunSalting.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunSmooth.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SetTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StartGame.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StartSimulation.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StartSimulator.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StatsLibTester.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.SetTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SetTest.testIsSubSet.executor&quot;: &quot;Debug&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Programming/IntelliJ/ProbabilityAndAppliedStats&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Salt" />
+      <recent name="CSVSalt" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Programming\IntelliJ\ProbabilityAndAppliedStats\OctaveScripts" />
       <recent name="C:\Programming\IntelliJ\PokemonTCG\src\main\java\PokemonTCG" />
       <recent name="C:\Programming\IntelliJ\PokemonTCG\src\main\java" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Cards" />
       <recent name="PokemonTCG.Cards.TrainerCards" />
       <recent name="PokemonTCG.Cards.PokemonCards" />
       <recent name="PokemonTCG.Cards.EnergyCards" />
       <recent name="PokemonTCG" />
-      <recent name="Cards.PokemonCards" />
     </key>
   </component>
   <component name="RunManager" selected="Application.PokemonTCG">
@@ -400,7 +415,103 @@
       <option name="project" value="LOCAL" />
       <updated>1740951287634</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Grammar Fix">
+      <option name="closed" value="true" />
+      <created>1740951451996</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1740951451997</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Forced player to establish an active pokemon before playing other card types - Fixes error of cycling out pokemon turn 1 and soft locking">
+      <option name="closed" value="true" />
+      <created>1741125085802</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1741125085802</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fixed no directory error">
+      <option name="closed" value="true" />
+      <created>1741570044232</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1741570044232</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Added Poker And Blackjack Simulations">
+      <option name="closed" value="true" />
+      <created>1741570082415</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1741570082415</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Added Poker And Blackjack Simulations">
+      <option name="closed" value="true" />
+      <created>1741570619682</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1741570619682</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Added mkdirs()">
+      <option name="closed" value="true" />
+      <created>1742507431569</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1742507431569</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added Plotting CSV Export example">
+      <option name="closed" value="true" />
+      <created>1742507450083</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1742507450083</updated>
+    </task>
+    <task id="LOCAL-00042" summary="CSV util updated to use string col mapping and integrated into the salting packages">
+      <option name="closed" value="true" />
+      <created>1743103939946</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1743103939946</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added Comments">
+      <option name="closed" value="true" />
+      <created>1743112190401</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1743112190401</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Added Octave Script for function graphing salting and smoothing">
+      <option name="closed" value="true" />
+      <created>1743440386456</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1743440386456</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Updated Name">
+      <option name="closed" value="true" />
+      <created>1743440460803</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1743440460803</updated>
+    </task>
+    <task id="LOCAL-00046" summary="typo in comment">
+      <option name="closed" value="true" />
+      <created>1743464029326</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1743464029326</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -415,17 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Pokemon TCG refactor" />
-    <MESSAGE value="Added checking energy requirements for moves" />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Added Mulligan Calculator with csv export" />
-    <MESSAGE value="uses reflection to dynamically get all cards (setting up for a deck builder)" />
-    <MESSAGE value="Added montecarlo assignment 2 and custom log class" />
-    <MESSAGE value="set up basic gameloop" />
-    <MESSAGE value="Turn order" />
-    <MESSAGE value="Updated mulligan mechanics" />
-    <MESSAGE value="Updated turn mechanics" />
-    <MESSAGE value="Added more turn options" />
     <MESSAGE value="Added visible bench and adding to bench" />
     <MESSAGE value="Added the ability to attack pokemon" />
     <MESSAGE value="updated attaching energy" />
@@ -440,7 +540,18 @@
     <MESSAGE value="Edited readme" />
     <MESSAGE value="Fixed Pokemon Descriptions" />
     <MESSAGE value="Fixed error on cards that edit the deck in the playCard method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed error on cards that edit the deck in the playCard method" />
+    <MESSAGE value="Grammar Fix" />
+    <MESSAGE value="Forced player to establish an active pokemon before playing other card types - Fixes error of cycling out pokemon turn 1 and soft locking" />
+    <MESSAGE value="Fixed no directory error" />
+    <MESSAGE value="Added Poker And Blackjack Simulations" />
+    <MESSAGE value="Added mkdirs()" />
+    <MESSAGE value="Added Plotting CSV Export example" />
+    <MESSAGE value="CSV util updated to use string col mapping and integrated into the salting packages" />
+    <MESSAGE value="Added Comments" />
+    <MESSAGE value="Added Octave Script for function graphing salting and smoothing" />
+    <MESSAGE value="Updated Name" />
+    <MESSAGE value="typo in comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="typo in comment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -449,6 +560,20 @@
           <url>file://$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/Tests/SetTest.java</url>
           <line>53</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/CSVSmoother/Smooth.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/../ProbabilityAndAppliedStats/src/CSVSalt/Salt.java</url>
+          <line>37</line>
+          <properties class="CSVSalt.Salt" method="exportSaltedData">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
