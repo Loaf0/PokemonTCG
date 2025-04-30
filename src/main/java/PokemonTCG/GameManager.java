@@ -10,7 +10,6 @@ import PokemonTCG.Cards.Energy;
 import PokemonTCG.Cards.Pokemon;
 import PokemonTCG.Cards.Trainer;
 
-import java.io.Console;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
